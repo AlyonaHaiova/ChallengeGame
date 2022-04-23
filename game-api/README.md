@@ -10,4 +10,4 @@ To run this project in docker you need to do 2 steps:
 
 3) Run container(you can also specify path to you env-file):
 
-`docker run -d -p 8080:8080 --name challenge_api challenge_game`
+`docker run -d -p 8080:8080 --name challenge_game_api challenge_game`

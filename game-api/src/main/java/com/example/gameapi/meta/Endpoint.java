@@ -7,4 +7,5 @@ public class Endpoint {
   private static final String API_PREFIX = "/api";
 
   public static final String CHECK = API_PREFIX + "/check";
+  public static final String GAME = API_PREFIX + "/games";
 }
