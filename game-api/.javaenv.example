@@ -1,0 +1,3 @@
+DATASOURCE_URL=jdbc:postgresql://localhost:5432/sea_battle
+DATASOURCE_USERNAME=postgres
+DATASOURCE_PASSWORD=postgres
