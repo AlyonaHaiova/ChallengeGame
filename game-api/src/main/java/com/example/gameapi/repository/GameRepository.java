@@ -1,7 +1,10 @@
 package com.example.gameapi.repository;
 
 import com.example.gameapi.entity.GameEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
-public interface GameRepository extends JpaRepository<GameEntity, Long> {
+@Mapper
+public interface GameRepository {
+  void save(@Param("entity") GameEntity entity);
 }
