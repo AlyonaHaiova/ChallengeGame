@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.gameapi.repository.CardRepository">
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
+        insert into public.cards(
+            type_id, description, time
+        ) values (
+            #{entity.typeId}, #{entity.description}, #{entity.time}
+        )
+    </insert>
+</mapper>
