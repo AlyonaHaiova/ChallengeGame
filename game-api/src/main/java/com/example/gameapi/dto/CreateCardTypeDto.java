@@ -1,4 +1,4 @@
-package com.example.gameapi.entity;
+package com.example.gameapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameEntity {
-  private Long id;
+public class CreateCardTypeDto {
+  private Long gameId;
   private String title;
-  private String description;
+  private String color;
 }

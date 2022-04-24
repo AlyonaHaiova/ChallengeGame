@@ -6,5 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface GameMapper {
-  GameEntity toEntity(CreateGameDto createGameDto);
+  GameEntity toEntity(CreateGameDto dto);
 }

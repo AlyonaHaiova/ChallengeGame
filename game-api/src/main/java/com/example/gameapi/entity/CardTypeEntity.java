@@ -9,8 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameEntity {
+public class CardTypeEntity {
   private Long id;
+  private Long gameId;
   private String title;
-  private String description;
+  private String color;
 }
