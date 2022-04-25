@@ -34,6 +34,9 @@ public class DefaultGameService implements GameService {
   @Override
   public CardDto getRandomCard(int gameId, Role role) {
     RandomCardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRole(gameId, role);
+    if (cardProjection == null) {
+      return null;
+    }
     CardDto card = cardMapper.toDto(cardProjection);
     card.setAmount(generateAmount(cardProjection.getRangeBegin(), cardProjection.getRangeEnd()));
     return card;
