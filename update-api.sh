@@ -1,3 +1,5 @@
+#!/bin/bash
+
 image_name=${1:-challenge_game}
 container_name=${2:-challenge_game_api}
 
