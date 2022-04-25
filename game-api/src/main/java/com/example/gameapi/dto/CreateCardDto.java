@@ -1,5 +1,6 @@
 package com.example.gameapi.dto;
 
+import com.example.gameapi.meta.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateCardDto {
   private Long typeId;
+  private Long unitId;
   private String description;
-  private String time;
+  private Role role;
+  private Integer rangeBegin;
+  private Integer rangeEnd;
 }

@@ -9,4 +9,39 @@
             #{entity.title}, #{entity.description}
         )
     </insert>
+
+    <select id="getRandomCardByGameIdAndRole" resultMap="randomCard">
+        select
+            c.id as id,
+               c.description as description,
+               c.role as role,
+               c.range_begin as range_begin,
+               c.range_end as range_end,
+               ct.title as card_type_title,
+               ct.color as card_type_color,
+               au.title as amount_unit_title
+        from cards c
+            left join card_types ct on ct.id = c.type_id
+            left join amount_units au on au.id = c.unit_id
+        where ct.game_id = #{gameId} and c.role = #{role}
+        order by random()
+        limit 1
+    </select>
+
+    <resultMap id="randomCard" type="com.example.gameapi.entity.projection.RandomCardProjection">
+        <id column="id" />
+        <result column="description" property="description" />
+        <result column="role" property="role" />
+        <result column="range_begin" property="rangeBegin" />
+        <result column="range_end" property="rangeEnd" />
+        
+        <association property="type" javaType="com.example.gameapi.entity.CardTypeEntity">
+            <result column="card_type_title" property="title" />
+            <result column="card_type_color" property="color" />
+        </association>
+
+        <association property="unit" javaType="com.example.gameapi.entity.AmountUnitEntity">
+            <result column="amount_unit_title" property="title" />
+        </association>
+    </resultMap>
 </mapper>

@@ -4,9 +4,19 @@
 <mapper namespace="com.example.gameapi.repository.CardRepository">
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
         insert into public.cards(
-            type_id, description, time
+            type_id,
+            unit_id,
+            description,
+            role,
+            range_begin,
+            range_end
         ) values (
-            #{entity.typeId}, #{entity.description}, #{entity.time}
+            #{entity.typeId},
+            #{entity.unitId},
+            #{entity.description},
+            #{entity.role},
+            #{entity.rangeBegin},
+            #{entity.rangeEnd}
         )
     </insert>
 </mapper>

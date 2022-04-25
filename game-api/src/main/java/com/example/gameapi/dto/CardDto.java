@@ -1,4 +1,4 @@
-package com.example.gameapi.entity;
+package com.example.gameapi.dto;
 
 import com.example.gameapi.meta.Role;
 import lombok.AllArgsConstructor;
@@ -10,12 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CardEntity {
-  private Long id;
-  private Long typeId;
-  private Long unitId;
+public class CardDto {
   private String description;
+  private CardTypeDto type;
+  private AmountUnitDto unit;
   private Role role;
-  private Integer rangeBegin;
-  private Integer rangeEnd;
+  private Integer amount;
 }
