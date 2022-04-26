@@ -10,7 +10,7 @@
         )
     </insert>
 
-    <select id="getRandomCardByGameIdAndRole" resultMap="randomCard">
+    <select id="getRandomCardByGameIdAndRoleAndCardType" resultMap="randomCard">
         select
             c.id as id,
                c.description as description,
@@ -24,6 +24,12 @@
             left join card_types ct on ct.id = c.type_id
             left join amount_units au on au.id = c.unit_id
         where ct.game_id = #{gameId} and c.role = #{role}
+        <if test="purpose.name().equals('PLAYABLE')">
+            and ct.is_playable
+        </if>
+        <if test="purpose.name().equals('PENALTY')">
+            and ct.is_penalty
+        </if>
         order by random()
         limit 1
     </select>

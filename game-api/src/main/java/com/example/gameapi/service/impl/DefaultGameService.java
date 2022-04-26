@@ -7,6 +7,7 @@ import com.example.gameapi.entity.GameEntity;
 import com.example.gameapi.entity.projection.RandomCardProjection;
 import com.example.gameapi.mapper.CardMapper;
 import com.example.gameapi.mapper.GameMapper;
+import com.example.gameapi.meta.Purpose;
 import com.example.gameapi.meta.Role;
 import com.example.gameapi.repository.GameRepository;
 import com.example.gameapi.service.GameService;
@@ -32,8 +33,8 @@ public class DefaultGameService implements GameService {
   }
 
   @Override
-  public CardDto getRandomCard(int gameId, Role role) {
-    RandomCardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRole(gameId, role);
+  public CardDto getRandomCard(int gameId, Role role, Purpose purpose) {
+    RandomCardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRoleAndCardType(gameId, role, purpose);
     if (cardProjection == null) {
       return null;
     }
