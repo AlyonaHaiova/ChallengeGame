@@ -1,19 +1,14 @@
-import {Roles} from "../components/Roles";
-
-let male = true;
-
-export const getCard = async () => {
-    return {
-        description: "Kiss",
-        type: {
-            title: "light",
-            color: "pink",
-        },
-        role: Roles.Male,
-        time: "1m",
-    }
-    male = !male;
-    // const response = await fetch("");
-    // const data = await response.json();
+export const getCard = async (lastRole = "FEMALE") => {
+    const response = await fetch(`http://192.168.0.128:8080/api/games/1/cards/random?role=${getRole(lastRole)}`);
+    const data = await response.json();
+    console.log(data);
+    return data;
 }
+
+const getRole = lastRole => {
+    return lastRole === "MALE" ? "FEMALE" : "MALE"
+}
+
+
+
 
