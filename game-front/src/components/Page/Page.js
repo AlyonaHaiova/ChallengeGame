@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Card} from "../Card/Card"
 import {getCard} from "../../services/CardService";
-import {Button} from "../Button/Button";
 import {Loading} from "../Loading/Loading";
 import '../Button/Button.css';
 import './Page.css';
@@ -17,17 +16,13 @@ export const Page = () => {
     useEffect(() => {
         fetchCard();
     }, []);
-    const clickMore = () => {
-        fetchCard();
-    }
     return (
         <div id="page">
             <div className="card-container">
                 {
-                    card == null ? <Loading /> : <Card card={card} isClicked={false} />
+                    card == null ? <Loading /> : <Card initialCard={card} isClicked={false} />
                 }
             </div>
-            <Button handleClick={clickMore}/>
         </div>
     )
 }

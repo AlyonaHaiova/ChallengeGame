@@ -1,0 +1,10 @@
+.panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.icon-btn i.material-icons {
+    font-size: 50px !important;
+}
+

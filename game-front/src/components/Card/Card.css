@@ -37,6 +37,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+
 }
 @media (max-width: 37.5em) {
     .artboard {
@@ -143,6 +144,13 @@ body {
     padding: 3rem;
 }
 
+.card__details p.description {
+    font-size: 3.5rem;
+}
+
+.card__details p.amount {
+    opacity: 0.5;
+}
 
 @media only screen and (max-width: 37.5em), only screen and (hover: none) {
     .card {

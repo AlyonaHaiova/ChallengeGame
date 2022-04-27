@@ -1,8 +1,17 @@
 import React, {useState} from 'react';
 import './Card.css'
+import {ButtonPanel} from "../ButtonPanel/ButtonPanel";
+import {sleep} from "../../handlers/DelayHandler";
 
-export const Card = ({card}) => {
+export const Card = ({initialCard}) => {
     const [clicked, setClicked] = useState(false);
+    const [card, setCard] = useState(initialCard);
+
+    const cardReceived = async card => {
+        setClicked(false);
+        await sleep(500);
+        setCard(card);
+    }
 
     return (
         <div className="artboard">
@@ -15,9 +24,16 @@ export const Card = ({card}) => {
                         </h4>
                     </div>
                     <div className="card__details">
-                        <p>{card.description}</p>
-                        <p className="amount">{card.amount}</p>
+                        <p className="description">{card.description}</p>
+                        <p className="amount">{card.unit.title}:  {card.amount}</p>
                     </div>
+
+                    <ButtonPanel
+                        currentRole={card.role}
+                        onCompleted={cardReceived}
+                        onRefresh={cardReceived}
+                        onPenalty={cardReceived}
+                    />
                 </div>
 
                 <div className="card__side card__side--front" style={{backgroundColor:card.type.color}}>
@@ -30,6 +46,7 @@ export const Card = ({card}) => {
                 </div>
             </div>
         </div>
+
     )
 }
 

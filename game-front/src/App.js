@@ -1,6 +1,5 @@
 import './App.css';
 
-
 import {Page} from "./components/Page/Page";
 
 function App() {
