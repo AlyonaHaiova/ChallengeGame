@@ -1,10 +1,11 @@
 package com.example.gameapi.dto;
 
-import com.example.gameapi.meta.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ public class CreateCardDto {
   private Long typeId;
   private Long unitId;
   private String description;
-  private Role role;
+  private List<Long> roleIds;
   private Integer rangeBegin;
   private Integer rangeEnd;
 }

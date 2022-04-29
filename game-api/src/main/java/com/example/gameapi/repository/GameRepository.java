@@ -3,7 +3,6 @@ package com.example.gameapi.repository;
 import com.example.gameapi.entity.GameEntity;
 import com.example.gameapi.entity.projection.RandomCardProjection;
 import com.example.gameapi.meta.Purpose;
-import com.example.gameapi.meta.Role;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,6 +12,6 @@ public interface GameRepository {
 
   RandomCardProjection getRandomCardByGameIdAndRoleAndCardType(
       @Param("gameId") int gameId,
-      @Param("role") Role role,
+      @Param("roleId") Long roleId,
       @Param("purpose") Purpose purpose);
 }

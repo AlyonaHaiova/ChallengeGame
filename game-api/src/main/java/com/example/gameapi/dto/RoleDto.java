@@ -9,10 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CardDto {
-  private String description;
-  private CardTypeDto type;
-  private AmountUnitDto unit;
-  private RoleDto role;
-  private Integer amount;
+public class RoleDto {
+  private Long id;
+  private String title;
 }

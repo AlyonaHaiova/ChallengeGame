@@ -5,7 +5,6 @@ import com.example.gameapi.dto.CreateGameDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.meta.Purpose;
 import com.example.gameapi.meta.Endpoint;
-import com.example.gameapi.meta.Role;
 import com.example.gameapi.service.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,9 +27,9 @@ public class GameController {
   @GetMapping("/{gameId}/cards/random")
   public CardDto getRandomCard(
       @PathVariable("gameId") int gameId,
-      @RequestParam("role") Role role,
+      @RequestParam("roleId") Long roleId,
       @RequestParam(value = "purpose", defaultValue = "PLAYABLE") Purpose purpose
       ) {
-    return gameService.getRandomCard(gameId, role, purpose);
+    return gameService.getRandomCard(gameId, roleId, purpose);
   }
 }

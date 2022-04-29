@@ -8,7 +8,6 @@ import com.example.gameapi.entity.projection.RandomCardProjection;
 import com.example.gameapi.mapper.CardMapper;
 import com.example.gameapi.mapper.GameMapper;
 import com.example.gameapi.meta.Purpose;
-import com.example.gameapi.meta.Role;
 import com.example.gameapi.repository.GameRepository;
 import com.example.gameapi.service.GameService;
 import lombok.RequiredArgsConstructor;
@@ -33,8 +32,8 @@ public class DefaultGameService implements GameService {
   }
 
   @Override
-  public CardDto getRandomCard(int gameId, Role role, Purpose purpose) {
-    RandomCardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRoleAndCardType(gameId, role, purpose);
+  public CardDto getRandomCard(int gameId, Long roleId, Purpose purpose) {
+    RandomCardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRoleAndCardType(gameId, roleId, purpose);
     if (cardProjection == null) {
       return null;
     }

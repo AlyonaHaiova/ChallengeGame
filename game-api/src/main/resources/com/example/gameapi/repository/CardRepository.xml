@@ -7,16 +7,32 @@
             type_id,
             unit_id,
             description,
-            role,
             range_begin,
             range_end
         ) values (
             #{entity.typeId},
             #{entity.unitId},
             #{entity.description},
-            #{entity.role},
             #{entity.rangeBegin},
             #{entity.rangeEnd}
         )
+    </insert>
+
+    <select id="getDistinctGameIdsFromRelatedTables" resultType="java.lang.Long">
+        select distinct game_id from (
+            select game_id from card_types ct where id=#{typeId}
+            union
+            select game_id from roles r where id in
+            <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+                #{roleId}
+            </foreach>
+        ) subtable
+    </select>
+
+    <insert id="saveCardRoles">
+        insert into public.cards_roles(card_id, role_id) values
+        <foreach collection="roleIds" item="roleId" separator=",">
+            (#{cardId}, #{roleId})
+        </foreach>
     </insert>
 </mapper>
