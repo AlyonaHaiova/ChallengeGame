@@ -37,6 +37,10 @@
         limit 1
     </select>
 
+    <select id="getRolesByGameId" resultType="com.example.gameapi.entity.RoleEntity">
+        select * from public.roles where game_id=#{gameId}
+    </select>
+
     <resultMap id="randomCard" type="com.example.gameapi.entity.projection.RandomCardProjection">
         <id column="id" />
         <result column="description" property="description" />
