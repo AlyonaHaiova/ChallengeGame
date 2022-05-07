@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  database:
+    container_name: postgres
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${POSTGRES_VOLUME}:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+
+  backend:
+    container_name: challenge_game_api
+    image: challenge_game/api
+    build:
+      context: ./game-api
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://database:5432/${DATABASE_NAME:-challenge_game}
+      - DATASOURCE_USERNAME=${POSTGRES_USERNAME:-postgres}
+      - DATASOURCE_PASSWORD=${POSTGRES_PASSWORD:-postgres}
