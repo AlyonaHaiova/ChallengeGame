@@ -10,7 +10,7 @@
         )
     </insert>
 
-    <select id="getRandomCardByGameIdAndRoleAndCardType" resultMap="randomCard">
+    <select id="getRandomCardByGameIdAndRoleAndCardType" resultMap="card">
         select
             c.id as id,
             c.description as description,
@@ -37,11 +37,31 @@
         limit 1
     </select>
 
+    <select id="getAllCardsByGameId" resultType="collection">
+        select
+        c.id as id,
+        c.description as description,
+        c.range_begin as range_begin,
+        c.range_end as range_end,
+        ct.title as card_type_title,
+        ct.color as card_type_color,
+        au.title as amount_unit_title,
+        r.id as role_id,
+        r.title as role_title
+        from cards c
+        left join card_types ct on ct.id = c.type_id
+        left join amount_units au on au.id = c.unit_id
+        left join cards_roles cr on c.id = cr.card_id
+        left join roles r on r.id = cr.role_id
+        where ct.game_id = #{gameId}
+        order by c.id
+    </select>
+
     <select id="getRolesByGameId" resultType="com.example.gameapi.entity.RoleEntity">
         select * from public.roles where game_id=#{gameId}
     </select>
 
-    <resultMap id="randomCard" type="com.example.gameapi.entity.projection.RandomCardProjection">
+    <resultMap id="card" type="com.example.gameapi.entity.projection.CardProjection">
         <id column="id" />
         <result column="description" property="description" />
         <result column="range_begin" property="rangeBegin" />
