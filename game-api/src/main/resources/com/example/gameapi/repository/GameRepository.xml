@@ -37,7 +37,7 @@
         limit 1
     </select>
 
-    <select id="getAllCardsByGameId" resultType="collection">
+    <select id="getAllCardsByGameId" resultMap="card">
         select
         c.id as id,
         c.description as description,
