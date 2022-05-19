@@ -12,7 +12,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RandomCardProjection {
+public class CardProjection {
+  private Long id;
   private String description;
   private CardTypeEntity type;
   private AmountUnitEntity unit;

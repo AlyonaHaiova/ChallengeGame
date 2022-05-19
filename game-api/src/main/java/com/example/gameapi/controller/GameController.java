@@ -38,6 +38,13 @@ public class GameController {
     return gameService.getRandomCard(gameId, roleId, purpose);
   }
 
+  @GetMapping("/{gameId}/cards")
+  public List<CardDto> getAllCards(
+      @PathVariable("gameId") int gameId
+  ) {
+    return gameService.getAllCards(gameId);
+  }
+
   @GetMapping("/{gameId}/roles")
   public List<RoleDto> getRoles(
       @PathVariable("gameId") int gameId
