@@ -18,5 +18,5 @@ public interface GameRepository {
       @Param("purpose") Purpose purpose);
 
   List<CardProjection> getAllCardsByGameId(
-          @Param("gameId") int gameId);
+      @Param("gameId") int gameId);
 }

@@ -40,7 +40,7 @@ public class GameController {
 
   @GetMapping("/{gameId}/cards")
   public List<CardDto> getAllCards(
-          @PathVariable("gameId") int gameId
+      @PathVariable("gameId") int gameId
   ) {
     return gameService.getAllCards(gameId);
   }
