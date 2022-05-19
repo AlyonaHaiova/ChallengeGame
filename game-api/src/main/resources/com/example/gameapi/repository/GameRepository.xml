@@ -62,7 +62,7 @@
     </select>
 
     <resultMap id="card" type="com.example.gameapi.entity.projection.CardProjection">
-        <id column="id" />
+        <id column="id" property="id"/>
         <result column="description" property="description" />
         <result column="range_begin" property="rangeBegin" />
         <result column="range_end" property="rangeEnd" />
