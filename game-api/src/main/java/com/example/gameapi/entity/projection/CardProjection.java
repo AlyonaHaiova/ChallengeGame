@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class CardProjection {
   private String description;
   private CardTypeEntity type;
   private AmountUnitEntity unit;
-  private RoleEntity role;
+  private List<RoleEntity> roles;
   private Integer rangeBegin;
   private Integer rangeEnd;
 }

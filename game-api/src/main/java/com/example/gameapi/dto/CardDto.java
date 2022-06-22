@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,6 +16,6 @@ public class CardDto {
   private String description;
   private CardTypeDto type;
   private AmountUnitDto unit;
-  private RoleDto role;
+  private List<RoleDto> roles;
   private Integer amount;
 }

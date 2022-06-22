@@ -38,21 +38,20 @@
     </select>
 
     <select id="getAllCardsByGameId" resultMap="card">
-        select
-        c.id as id,
-        c.description as description,
-        c.range_begin as range_begin,
-        c.range_end as range_end,
-        ct.title as card_type_title,
-        ct.color as card_type_color,
-        au.title as amount_unit_title,
-        r.id as role_id,
-        r.title as role_title
+        select c.id          as id,
+               c.description as description,
+               c.range_begin as range_begin,
+               c.range_end   as range_end,
+               ct.title      as card_type_title,
+               ct.color      as card_type_color,
+               au.title      as amount_unit_title,
+               r.id          as role_id,
+               r.title       as role_title
         from cards c
-        left join card_types ct on ct.id = c.type_id
-        left join amount_units au on au.id = c.unit_id
-        left join cards_roles cr on c.id = cr.card_id
-        left join roles r on r.id = cr.role_id
+                 left join card_types ct on ct.id = c.type_id
+                 left join amount_units au on au.id = c.unit_id
+                 left join cards_roles cr on c.id = cr.card_id
+                 left join roles r on r.id = cr.role_id
         where ct.game_id = #{gameId}
         order by c.id
     </select>
@@ -76,9 +75,10 @@
             <result column="amount_unit_title" property="title" />
         </association>
 
-        <association property="role" javaType="com.example.gameapi.entity.RoleEntity">
+        <collection property="roles" javaType="List" ofType="com.example.gameapi.entity.RoleEntity">
             <result column="role_id" property="id" />
             <result column="role_title" property="title" />
-        </association>
+        </collection>
+
     </resultMap>
 </mapper>
