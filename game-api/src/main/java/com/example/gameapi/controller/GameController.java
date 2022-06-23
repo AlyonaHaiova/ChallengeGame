@@ -1,11 +1,8 @@
 package com.example.gameapi.controller;
 
-import com.example.gameapi.dto.CardDto;
-import com.example.gameapi.dto.CreateGameDto;
-import com.example.gameapi.dto.IdDto;
-import com.example.gameapi.dto.RoleDto;
-import com.example.gameapi.meta.Purpose;
+import com.example.gameapi.dto.*;
 import com.example.gameapi.meta.Endpoint;
+import com.example.gameapi.meta.Purpose;
 import com.example.gameapi.service.GameService;
 import com.example.gameapi.service.RoleService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +27,7 @@ public class GameController {
   }
 
   @GetMapping("/{gameId}/cards/random")
-  public CardDto getRandomCard(
+  public RandomCardDto getRandomCard(
       @PathVariable("gameId") int gameId,
       @RequestParam("roleId") Long roleId,
       @RequestParam(value = "purpose", defaultValue = "PLAYABLE") Purpose purpose
