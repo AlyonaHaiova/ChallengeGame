@@ -11,12 +11,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CardDto {
+public class RandomCardDto {
   private Long id;
   private String description;
   private CardTypeDto type;
   private AmountUnitDto unit;
   private List<RoleDto> roles;
-  private Integer rangeBegin;
-  private Integer rangeEnd;
+  private Integer amount;
 }

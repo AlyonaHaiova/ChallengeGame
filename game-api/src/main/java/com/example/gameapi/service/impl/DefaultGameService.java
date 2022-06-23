@@ -3,6 +3,7 @@ package com.example.gameapi.service.impl;
 import com.example.gameapi.dto.CardDto;
 import com.example.gameapi.dto.CreateGameDto;
 import com.example.gameapi.dto.IdDto;
+import com.example.gameapi.dto.RandomCardDto;
 import com.example.gameapi.entity.GameEntity;
 import com.example.gameapi.entity.projection.CardProjection;
 import com.example.gameapi.mapper.CardMapper;
@@ -34,12 +35,12 @@ public class DefaultGameService implements GameService {
   }
 
   @Override
-  public CardDto getRandomCard(int gameId, Long roleId, Purpose purpose) {
+  public RandomCardDto getRandomCard(int gameId, Long roleId, Purpose purpose) {
     CardProjection cardProjection = gameRepository.getRandomCardByGameIdAndRoleAndCardType(gameId, roleId, purpose);
     if (cardProjection == null) {
       return null;
     }
-    CardDto card = cardMapper.toDto(cardProjection);
+    RandomCardDto card = cardMapper.toRandomCardDto(cardProjection);
     card.setAmount(generateAmount(cardProjection.getRangeBegin(), cardProjection.getRangeEnd()));
     return card;
   }
@@ -47,7 +48,7 @@ public class DefaultGameService implements GameService {
   @Override
   public List<CardDto> getAllCards(int gameId) {
     return gameRepository.getAllCardsByGameId(gameId).stream()
-            .map(cardMapper::toDto)
+        .map(cardMapper::toCardDto)
             .collect(Collectors.toList());
   }
 

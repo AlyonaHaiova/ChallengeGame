@@ -3,15 +3,22 @@ package com.example.gameapi.controller;
 import com.example.gameapi.dto.CardDto;
 import com.example.gameapi.dto.CreateGameDto;
 import com.example.gameapi.dto.IdDto;
+import com.example.gameapi.dto.RandomCardDto;
 import com.example.gameapi.dto.RoleDto;
-import com.example.gameapi.meta.Purpose;
 import com.example.gameapi.meta.Endpoint;
+import com.example.gameapi.meta.Purpose;
 import com.example.gameapi.service.GameService;
 import com.example.gameapi.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -30,7 +37,7 @@ public class GameController {
   }
 
   @GetMapping("/{gameId}/cards/random")
-  public CardDto getRandomCard(
+  public RandomCardDto getRandomCard(
       @PathVariable("gameId") int gameId,
       @RequestParam("roleId") Long roleId,
       @RequestParam(value = "purpose", defaultValue = "PLAYABLE") Purpose purpose
