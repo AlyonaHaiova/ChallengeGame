@@ -1,13 +1,15 @@
 package com.example.gameapi.controller;
 
-import com.example.gameapi.dto.CreateCardDto;
+import com.example.gameapi.dto.CardDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.meta.Endpoint;
 import com.example.gameapi.service.CardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +22,18 @@ public class CardController {
 
   @PostMapping
   public ResponseEntity<IdDto> create(
-      @RequestBody CreateCardDto createCardDto
+      @RequestBody CardDto cardDto
   ) {
     return ResponseEntity
         .status(HttpStatus.CREATED)
-        .body(cardService.create(createCardDto));
+        .body(cardService.create(cardDto));
+  }
+
+  @PutMapping("/{id}")
+  public void update(
+      @PathVariable("id") long id,
+      @RequestBody CardDto cardDto
+  ) {
+    cardService.update(id, cardDto);
   }
 }

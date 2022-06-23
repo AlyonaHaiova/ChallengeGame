@@ -17,7 +17,7 @@ public class DefaultRoleService implements RoleService {
   private final RoleRepository roleRepository;
 
   @Override
-  public List<RoleDto> getRoles(int gameId) {
+  public List<RoleDto> getRoles(Long gameId) {
     return roleRepository.getRolesByGameId(gameId).stream()
         .map(roleMapper::toDto)
         .collect(Collectors.toList());

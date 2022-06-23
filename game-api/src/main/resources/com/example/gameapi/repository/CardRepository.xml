@@ -8,24 +8,32 @@
             unit_id,
             description,
             range_begin,
-            range_end
-        ) values (
-            #{entity.typeId},
-            #{entity.unitId},
-            #{entity.description},
-            #{entity.rangeBegin},
-            #{entity.rangeEnd}
-        )
+            range_end)
+        values (#{entity.typeId},
+                #{entity.unitId},
+                #{entity.description},
+                #{entity.rangeBegin},
+                #{entity.rangeEnd})
     </insert>
+
+    <update id="update">
+        update cards
+        set type_id     = #{entity.typeId},
+            unit_id     = #{entity.unitId},
+            description = #{entity.description},
+            range_begin = #{entity.rangeBegin},
+            range_end   = #{entity.rangeEnd}
+        where id = #{id};
+    </update>
 
     <select id="getDistinctGameIdsFromRelatedTables" resultType="java.lang.Long">
         select distinct game_id from (
-            select game_id from card_types ct where id=#{typeId}
-            union
-            select game_id from roles r where id in
-            <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
-                #{roleId}
-            </foreach>
+        select game_id from card_types ct where id=#{typeId}
+        union
+        select game_id from roles r where id in
+        <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+            #{roleId}
+        </foreach>
         ) subtable
     </select>
 
@@ -35,4 +43,18 @@
             (#{cardId}, #{roleId})
         </foreach>
     </insert>
+
+    <delete id="deleteCardRoles">
+        delete from cards_roles where card_id = #{cardId} and role_id in
+        <foreach collection="roleIds" open="(" close=")" separator="," item="roleId">
+            #{roleId}
+        </foreach>
+    </delete>
+
+    <select id="getGameIdByCardId" resultType="java.lang.Long">
+        select game_id
+        from card_types ct
+                 left join cards c on c.type_id = ct.id
+        where c.id = #{cardId}
+    </select>
 </mapper>
