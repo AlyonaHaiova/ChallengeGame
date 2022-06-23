@@ -20,4 +20,3 @@ public class CardDto {
   private Integer rangeBegin;
   private Integer rangeEnd;
 }
-
