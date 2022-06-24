@@ -15,6 +15,9 @@ public interface CardRepository {
       @Param("id") Long id,
       @Param("entity") CardEntity entity);
 
+  void delete(
+      @Param("id") Long id);
+
   List<Long> getDistinctGameIdsFromRelatedTables(
       @Param("typeId") Long typeId,
       @Param("roleIds") List<Long> roleIds);

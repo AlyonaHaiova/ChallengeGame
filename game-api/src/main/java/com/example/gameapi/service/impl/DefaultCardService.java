@@ -57,6 +57,11 @@ public class DefaultCardService implements CardService {
     }
   }
 
+  @Override
+  public void delete(Long id) {
+    cardRepository.delete(id);
+  }
+
   private List<Long> getChangedIdsList(Set<Long> ids, Set<Long> newIds) {
     return new ArrayList<>(CollectionUtils.getDifference(newIds, ids));
   }
