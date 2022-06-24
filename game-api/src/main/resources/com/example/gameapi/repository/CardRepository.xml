@@ -26,6 +26,12 @@
         where id = #{id}
     </update>
 
+    <delete id="deleteById">
+        delete
+        from cards
+        where id = #{id}
+    </delete>
+
     <select id="getDistinctGameIdsFromRelatedTables" resultType="java.lang.Long">
         select distinct game_id from (
         select game_id from card_types ct where id=#{typeId}
