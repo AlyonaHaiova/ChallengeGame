@@ -59,7 +59,7 @@ public class DefaultCardService implements CardService {
 
   @Override
   public void delete(Long id) {
-    cardRepository.delete(id);
+    cardRepository.deleteById(id);
   }
 
   private List<Long> getChangedIdsList(Set<Long> ids, Set<Long> newIds) {
