@@ -23,7 +23,7 @@
             description = #{entity.description},
             range_begin = #{entity.rangeBegin},
             range_end   = #{entity.rangeEnd}
-        where id = #{id};
+        where id = #{id}
     </update>
 
     <select id="getDistinctGameIdsFromRelatedTables" resultType="java.lang.Long">
