@@ -13,10 +13,10 @@ public interface GameRepository {
   void save(@Param("entity") GameEntity entity);
 
   CardProjection getRandomCardByGameIdAndRoleAndCardType(
-      @Param("gameId") int gameId,
+      @Param("gameId") Long gameId,
       @Param("roleId") Long roleId,
       @Param("purpose") Purpose purpose);
 
   List<CardProjection> getAllCardsByGameId(
-      @Param("gameId") int gameId);
+      @Param("gameId") Long gameId);
 }

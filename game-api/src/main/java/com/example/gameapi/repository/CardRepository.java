@@ -11,6 +11,10 @@ public interface CardRepository {
   void save(
       @Param("entity") CardEntity entity);
 
+  void update(
+      @Param("id") Long id,
+      @Param("entity") CardEntity entity);
+
   List<Long> getDistinctGameIdsFromRelatedTables(
       @Param("typeId") Long typeId,
       @Param("roleIds") List<Long> roleIds);

@@ -1,7 +1,7 @@
 package com.example.gameapi.controller;
 
-import com.example.gameapi.dto.CardDto;
 import com.example.gameapi.dto.CreateGameDto;
+import com.example.gameapi.dto.FullCardDataDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.dto.RandomCardDto;
 import com.example.gameapi.dto.RoleDto;
@@ -38,7 +38,7 @@ public class GameController {
 
   @GetMapping("/{gameId}/cards/random")
   public RandomCardDto getRandomCard(
-      @PathVariable("gameId") int gameId,
+      @PathVariable("gameId") long gameId,
       @RequestParam("roleId") Long roleId,
       @RequestParam(value = "purpose", defaultValue = "PLAYABLE") Purpose purpose
   ) {
@@ -46,15 +46,15 @@ public class GameController {
   }
 
   @GetMapping("/{gameId}/cards")
-  public List<CardDto> getAllCards(
-      @PathVariable("gameId") int gameId
+  public List<FullCardDataDto> getAllCards(
+      @PathVariable("gameId") long gameId
   ) {
     return gameService.getAllCards(gameId);
   }
 
   @GetMapping("/{gameId}/roles")
   public List<RoleDto> getRoles(
-      @PathVariable("gameId") int gameId
+      @PathVariable("gameId") long gameId
   ) {
     return roleService.getRoles(gameId);
   }

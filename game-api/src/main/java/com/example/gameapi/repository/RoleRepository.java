@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface RoleRepository {
   List<RoleEntity> getRolesByGameId(
-      @Param("gameId") int gameId);
+      @Param("gameId") Long gameId);
 }

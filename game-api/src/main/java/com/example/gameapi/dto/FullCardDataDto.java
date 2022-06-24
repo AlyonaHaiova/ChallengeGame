@@ -11,11 +11,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateCardDto {
-  private Long typeId;
-  private Long unitId;
+public class FullCardDataDto {
+  private Long id;
   private String description;
-  private List<Long> roleIds;
+  private CardTypeDto type;
+  private AmountUnitDto unit;
+  private List<RoleDto> roles;
   private Integer rangeBegin;
   private Integer rangeEnd;
 }

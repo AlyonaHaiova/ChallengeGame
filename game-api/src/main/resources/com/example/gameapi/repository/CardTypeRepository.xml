@@ -3,10 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.gameapi.repository.CardTypeRepository">
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
-        insert into public.card_types (
-           game_id, title, color
-        ) values (
-            #{entity.gameId}, #{entity.title}, #{entity.color}
-        )
+        insert into public.card_types (game_id, title, color)
+        values (#{entity.gameId}, #{entity.title}, #{entity.color})
     </insert>
+
+    <select id="getGameIdByCardId" resultType="java.lang.Long">
+        select game_id
+        from card_types ct
+                 left join cards c on c.type_id = ct.id
+        where c.id = #{cardId}
+    </select>
 </mapper>
