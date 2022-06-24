@@ -38,14 +38,15 @@ public class DefaultCardService implements CardService {
     return new IdDto(entity.getId());
   }
 
+  @Transactional
   @Override
   public void update(Long id, CardDto cardDto) {
+    Long gameId = cardTypeRepository.getGameIdByCardId(id);
+    cardValidator.ensureIfValid(gameId, cardDto);
     Set<Long> roleIds = cardRoleRepository.getRolesIdsByCardId(id);
     Set<Long> newRoleIds = new HashSet<>(cardDto.getRoleIds());
     List<Long> roleIdsToInsert = getChangedIdsList(roleIds, newRoleIds);
     List<Long> roleIdsToDelete = getChangedIdsList(newRoleIds, roleIds);
-    Long gameId = cardTypeRepository.getGameIdByCardId(id);
-    cardValidator.ensureIfValid(gameId, cardDto);
     CardEntity entity = cardMapper.toEntity(cardDto);
     cardRepository.update(id, entity);
     if (roleIdsToInsert.size() > 0) {
