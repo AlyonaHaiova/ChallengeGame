@@ -22,11 +22,4 @@ public interface CardRepository {
   void saveCardRoles(
       @Param("cardId") Long cardId,
       @Param("roleIds") List<Long> roleIds);
-
-  void deleteCardRoles(
-      @Param("cardId") Long cardId,
-      @Param("roleIds") List<Long> roleIds);
-
-  Long getGameIdByCardId(
-      @Param("cardId") Long cardId);
 }

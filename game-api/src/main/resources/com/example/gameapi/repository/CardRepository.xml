@@ -43,18 +43,4 @@
             (#{cardId}, #{roleId})
         </foreach>
     </insert>
-
-    <delete id="deleteCardRoles">
-        delete from cards_roles where card_id = #{cardId} and role_id in
-        <foreach collection="roleIds" open="(" close=")" separator="," item="roleId">
-            #{roleId}
-        </foreach>
-    </delete>
-
-    <select id="getGameIdByCardId" resultType="java.lang.Long">
-        select game_id
-        from card_types ct
-                 left join cards c on c.type_id = ct.id
-        where c.id = #{cardId}
-    </select>
 </mapper>

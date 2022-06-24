@@ -7,10 +7,4 @@
         from public.roles
         where game_id = #{gameId}
     </select>
-
-    <select id="getRolesIdsByCardId" resultType="java.lang.Long">
-        select role_id
-        from public.cards_roles
-        where card_id = #{cardId}
-    </select>
 </mapper>

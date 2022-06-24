@@ -5,8 +5,10 @@ import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.entity.CardEntity;
 import com.example.gameapi.mapper.CardMapper;
 import com.example.gameapi.repository.CardRepository;
-import com.example.gameapi.repository.RoleRepository;
+import com.example.gameapi.repository.CardRoleRepository;
+import com.example.gameapi.repository.CardTypeRepository;
 import com.example.gameapi.service.CardService;
+import com.example.gameapi.utils.CollectionUtils;
 import com.example.gameapi.validator.CardValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,8 @@ import java.util.Set;
 public class DefaultCardService implements CardService {
   private final CardMapper cardMapper;
   private final CardRepository cardRepository;
-  private final RoleRepository roleRepository;
+  private final CardTypeRepository cardTypeRepository;
+  private final CardRoleRepository cardRoleRepository;
   private final CardValidator cardValidator;
 
   @Transactional
@@ -37,11 +40,11 @@ public class DefaultCardService implements CardService {
 
   @Override
   public void update(Long id, CardDto cardDto) {
-    Set<Long> roleIds = roleRepository.getRolesIdsByCardId(id);
+    Set<Long> roleIds = cardRoleRepository.getRolesIdsByCardId(id);
     Set<Long> newRoleIds = new HashSet<>(cardDto.getRoleIds());
-    List<Long> roleIdsToInsert = getRoleIdsToInsert(roleIds, newRoleIds);
-    List<Long> roleIdsToDelete = getRoleIdsToDelete(roleIds, newRoleIds);
-    Long gameId = cardRepository.getGameIdByCardId(id);
+    List<Long> roleIdsToInsert = getChangedIdsList(roleIds, newRoleIds);
+    List<Long> roleIdsToDelete = getChangedIdsList(newRoleIds, roleIds);
+    Long gameId = cardTypeRepository.getGameIdByCardId(id);
     cardValidator.ensureIfValid(gameId, cardDto);
     CardEntity entity = cardMapper.toEntity(cardDto);
     cardRepository.update(id, entity);
@@ -49,19 +52,11 @@ public class DefaultCardService implements CardService {
       cardRepository.saveCardRoles(id, roleIdsToInsert);
     }
     if (roleIdsToDelete.size() > 0) {
-      cardRepository.deleteCardRoles(id, roleIdsToDelete);
+      cardRoleRepository.deleteCardRoles(id, roleIdsToDelete);
     }
   }
 
-  private List<Long> getRoleIdsToInsert(Set<Long> roleIds, Set<Long> newRoleIds) {
-    Set<Long> ids = new HashSet<>(newRoleIds);
-    ids.removeAll(roleIds);
-    return new ArrayList<>(ids);
-  }
-
-  private List<Long> getRoleIdsToDelete(Set<Long> roleIds, Set<Long> newRoleIds) {
-    Set<Long> ids = new HashSet<>(roleIds);
-    ids.removeAll(newRoleIds);
-    return new ArrayList<>(ids);
+  private List<Long> getChangedIdsList(Set<Long> ids, Set<Long> newIds) {
+    return new ArrayList<>(CollectionUtils.getDifference(newIds, ids));
   }
 }
