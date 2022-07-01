@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class GameEntity {
   private Long id;
+  private Long userId;
   private String title;
   private String description;
 }
