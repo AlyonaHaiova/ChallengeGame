@@ -8,7 +8,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 class AudienceValidator implements OAuth2TokenValidator<Jwt> {
   private final String audience;
 
-  AudienceValidator(String audience) {
+  public AudienceValidator(String audience) {
     this.audience = audience;
   }
 
