@@ -1,9 +1,5 @@
 .App {
   text-align: center;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .App-logo {
@@ -39,16 +35,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.green {
-  color: #009688;
-}
-
-.red {
-  color: #f44336;
-}
-
-.yellow {
-  color: #ffc107;
 }
