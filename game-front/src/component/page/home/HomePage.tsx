@@ -1,21 +1,13 @@
 import { FC } from "react";
-import Device from "../../../meta/device";
-import FlexAlignment from "../../../meta/flex.alignment";
-import FlexDirection from "../../../meta/flex.direction";
-import Flex from "../../common/Flex";
+import "./HomePage.scss";
+import "../../../scss/common/flex.scss";
 
 const HomePage: FC = () => {
     return (
-        <Flex
-            alignment={FlexAlignment.start}
-            direction={FlexDirection.column}
-            newDirection={FlexDirection.row}
-            newAlignment={FlexAlignment.end}
-            changeOn={Device.medium}
-        >
-            <div>First item</div>
-            <div>Second item</div>
-        </Flex>
+        <div className="HomePage s-hflex-start m-vflex-center">
+            <div>item 1</div>
+            <div>item 2</div>
+        </div>
     );
 }
 

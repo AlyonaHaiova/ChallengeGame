@@ -1,0 +1,12 @@
+@import "../../scss/variable/theme.scss";
+
+.Logo {
+    text-decoration: none;
+}
+
+.Logo .app-name {
+    font-family: 'Kanit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $secondaryLightColor;
+}
