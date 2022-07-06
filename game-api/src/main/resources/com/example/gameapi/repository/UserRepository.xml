@@ -7,4 +7,10 @@
         from public.users
         where email = #{email}
     </select>
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
+        insert into public.users(email,
+                                 nickname)
+        values (#{entity.email},
+                #{entity.nickname})
+    </insert>
 </mapper>

@@ -12,6 +12,5 @@ import lombok.Setter;
 public class UserEntity {
   private Long id;
   private String email;
-  private String firstName;
-  private String lastName;
+  private String nickname;
 }

@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface UserRepository {
   Optional<UserEntity> findUserByEmail(
       @Param("email") String email);
+
+  void save(
+      @Param("entity") UserEntity userEntity);
 }
