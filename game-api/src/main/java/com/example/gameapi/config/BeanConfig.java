@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfig {
-  private final ConfigProperties configProperties;
+  private final Auth0Properties auth0Properties;
 
   @Bean
   public AuthAPI getAuthApi() {
-    return new AuthAPI(configProperties.getDomain(), configProperties.getClientId(), configProperties.getClientSecret());
+    return new AuthAPI(auth0Properties.getDomain(), auth0Properties.getClientId(), auth0Properties.getClientSecret());
   }
 }

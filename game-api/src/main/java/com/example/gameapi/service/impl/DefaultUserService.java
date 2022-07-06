@@ -21,4 +21,10 @@ public class DefaultUserService implements UserService {
     UserEntity userEntity = userRepository.findUserByEmail(email).orElse(null);
     return Optional.ofNullable(userMapper.toDto(userEntity));
   }
+
+  @Override
+  public Optional<UserDto> findUserByEmailOrNickname(String email, String nickname) {
+    UserEntity userEntity = userRepository.findUserByEmailOrNickname(email, nickname).orElse(null);
+    return Optional.ofNullable(userMapper.toDto(userEntity));
+  }
 }

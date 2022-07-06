@@ -11,6 +11,10 @@ public interface UserRepository {
   Optional<UserEntity> findUserByEmail(
       @Param("email") String email);
 
+  Optional<UserEntity> findUserByEmailOrNickname(
+      @Param("email") String email,
+      @Param("nickname") String nickname);
+
   void save(
       @Param("entity") UserEntity userEntity);
 }

@@ -1,7 +1,9 @@
 package com.example.gameapi.controller;
 
 import com.example.gameapi.dto.IdDto;
+import com.example.gameapi.dto.LoginDto;
 import com.example.gameapi.dto.RegisterDto;
+import com.example.gameapi.dto.TokenDto;
 import com.example.gameapi.meta.Endpoint;
 import com.example.gameapi.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +23,12 @@ public class AuthController {
       @RequestBody RegisterDto registerDto
   ) {
     return authService.register(registerDto);
+  }
+
+  @PostMapping("/login")
+  public TokenDto login(
+      @RequestBody LoginDto loginDto
+  ) {
+    return authService.login(loginDto);
   }
 }
