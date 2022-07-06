@@ -9,4 +9,5 @@ public class Endpoint {
   public static final String GAME = API_PREFIX + "/games";
   public static final String CARD_TYPE = API_PREFIX + "/card-types";
   public static final String CARD = API_PREFIX + "/cards";
+  public static final String AUTH = API_PREFIX + "/auth";
 }

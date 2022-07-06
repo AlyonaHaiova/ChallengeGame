@@ -37,11 +37,13 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-        .authorizeHttpRequests(authorize -> authorize
-            .mvcMatchers(Endpoint.GAME + "/**").authenticated()
-            .mvcMatchers(Endpoint.CARD + "/**").authenticated()
-            .mvcMatchers(Endpoint.CARD_TYPE + "/**").authenticated()
-        )
+        .authorizeHttpRequests(auth -> auth
+            .mvcMatchers(
+                Endpoint.GAME + "/**",
+                Endpoint.CARD + "/**",
+                Endpoint.CARD_TYPE + "/**").authenticated()
+            .mvcMatchers(Endpoint.AUTH + "/**").permitAll())
+        .csrf().disable()
         .oauth2ResourceServer(oauth2 -> oauth2
             .jwt(jwt -> jwt
                 .jwtAuthenticationConverter(jwtConverter)
