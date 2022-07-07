@@ -1,7 +1,9 @@
 package com.example.gameapi.controller;
 
+import com.example.gameapi.dto.EmailDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.dto.LoginDto;
+import com.example.gameapi.dto.MessageDto;
 import com.example.gameapi.dto.RegisterDto;
 import com.example.gameapi.dto.TokenDto;
 import com.example.gameapi.meta.Endpoint;
@@ -30,5 +32,19 @@ public class AuthController {
       @RequestBody LoginDto loginDto
   ) {
     return authService.login(loginDto);
+  }
+
+  @PostMapping("/renew")
+  public TokenDto renewAuth(
+      @RequestBody TokenDto expiredTokenDto
+  ) {
+    return authService.renewAuth(expiredTokenDto);
+  }
+
+  @PostMapping("/reset")
+  public MessageDto resetAuth(
+      @RequestBody EmailDto emailDto
+  ) {
+    return authService.resetPassword(emailDto);
   }
 }

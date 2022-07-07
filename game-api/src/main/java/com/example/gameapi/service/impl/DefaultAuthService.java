@@ -7,8 +7,10 @@ import com.auth0.net.AuthRequest;
 import com.auth0.net.Request;
 import com.auth0.net.SignUpRequest;
 import com.example.gameapi.config.Auth0Properties;
+import com.example.gameapi.dto.EmailDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.dto.LoginDto;
+import com.example.gameapi.dto.MessageDto;
 import com.example.gameapi.dto.RegisterDto;
 import com.example.gameapi.dto.TokenDto;
 import com.example.gameapi.entity.UserEntity;
@@ -54,6 +56,21 @@ public class DefaultAuthService implements AuthService {
         .setScope(auth0Properties.getScope());
     TokenHolder holder = executeRequest(request);
     return tokenMapper.toDto(holder);
+  }
+
+  @Override
+  public TokenDto renewAuth(TokenDto expiredTokenDto) {
+    AuthRequest request = auth.renewAuth(expiredTokenDto.getRefreshToken())
+        .setScope(auth0Properties.getScope());
+    TokenHolder holder = executeRequest(request);
+    return tokenMapper.toDto(holder);
+  }
+
+  @Override
+  public MessageDto resetPassword(EmailDto emailDto) {
+    Request<Void> request = auth.resetPassword(emailDto.getEmail(), auth0Properties.getConnection());
+    executeRequest(request);
+    return new MessageDto("Email was sent");
   }
 
   private <T> T executeRequest(Request<T> request) {
