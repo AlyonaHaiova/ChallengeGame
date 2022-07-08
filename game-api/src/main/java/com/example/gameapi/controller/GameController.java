@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,7 +31,9 @@ public class GameController {
   private final RoleService roleService;
 
   @PostMapping
-  public ResponseEntity<IdDto> create(@RequestBody CreateGameDto createGameDto) {
+  public ResponseEntity<IdDto> create(
+      @Valid @RequestBody CreateGameDto createGameDto
+  ) {
     return ResponseEntity
         .status(HttpStatus.CREATED)
         .body(gameService.create(createGameDto));

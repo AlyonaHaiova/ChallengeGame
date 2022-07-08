@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(Endpoint.AUTH)
 @RequiredArgsConstructor
@@ -22,14 +24,14 @@ public class AuthController {
 
   @PostMapping("/register")
   public IdDto register(
-      @RequestBody RegisterDto registerDto
+      @Valid @RequestBody RegisterDto registerDto
   ) {
     return authService.register(registerDto);
   }
 
   @PostMapping("/login")
   public TokenDto login(
-      @RequestBody LoginDto loginDto
+      @Valid @RequestBody LoginDto loginDto
   ) {
     return authService.login(loginDto);
   }
@@ -43,7 +45,7 @@ public class AuthController {
 
   @PostMapping("/reset")
   public MessageDto resetAuth(
-      @RequestBody EmailDto emailDto
+      @Valid @RequestBody EmailDto emailDto
   ) {
     return authService.resetPassword(emailDto);
   }

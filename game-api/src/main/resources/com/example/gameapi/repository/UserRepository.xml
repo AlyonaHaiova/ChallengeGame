@@ -5,14 +5,14 @@
     <select id="findUserByEmail" resultType="com.example.gameapi.entity.UserEntity">
         select *
         from public.users
-        where email =
+        where email ilike
               #{email}
     </select>
     <select id="findUserByEmailOrNickname" resultType="com.example.gameapi.entity.UserEntity">
         select *
         from public.users
-        where email = #{email}
-           or nickname = #{nickname}
+        where email ilike #{email}
+           or nickname ilike #{nickname}
     </select>
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
         insert into public.users(email,
