@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(Endpoint.CARD_TYPE)
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class CardTypeController {
 
   @PostMapping
   public ResponseEntity<IdDto> create(
-      @RequestBody CreateCardTypeDto createCardTypeDto
+      @Valid @RequestBody CreateCardTypeDto createCardTypeDto
   ) {
     return ResponseEntity
         .status(HttpStatus.CREATED)
