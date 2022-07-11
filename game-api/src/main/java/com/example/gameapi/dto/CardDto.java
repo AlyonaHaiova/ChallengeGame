@@ -25,8 +25,8 @@ public class CardDto {
   @Size(max = 200, message = ValidationMessage.CARD_DESCRIPTION_LONG)
   private String description;
   private List<Long> roleIds;
-  @PositiveOrZero(message = ValidationMessage.POSITIVE_NUMBER)
+  @PositiveOrZero(message = ValidationMessage.POSITIVE_OR_ZERO_NUMBER)
   private Integer rangeBegin;
-  @PositiveOrZero(message = ValidationMessage.POSITIVE_NUMBER)
+  @PositiveOrZero(message = ValidationMessage.POSITIVE_OR_ZERO_NUMBER)
   private Integer rangeEnd;
 }

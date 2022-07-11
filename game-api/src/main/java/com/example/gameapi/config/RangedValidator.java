@@ -6,7 +6,8 @@ import com.example.gameapi.exception.InvalidRangeArgumentsException;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 public class RangedValidator implements ConstraintValidator<Ranged, Object> {
 
@@ -31,7 +32,6 @@ public class RangedValidator implements ConstraintValidator<Ranged, Object> {
     } catch (NoSuchFieldException exception) {
       throw new InvalidRangeArgumentsException("Invalid range");
     }
-
   }
 
   private Object getFieldValue(Field field, Object object) {
@@ -58,8 +58,8 @@ public class RangedValidator implements ConstraintValidator<Ranged, Object> {
       return isValidRange((Float) begin, (Float) end);
     } else if (begin instanceof Double) {
       return isValidRange((Double) begin, (Double) end);
-    } else if (begin instanceof Date) {
-      return isValidRange((Date) begin, (Date) end);
+    } else if (begin instanceof LocalDateTime) {
+      return isValidRange((LocalDateTime) begin, (LocalDateTime) end);
     }
     return false;
   }
@@ -92,7 +92,7 @@ public class RangedValidator implements ConstraintValidator<Ranged, Object> {
     return second > first;
   }
 
-  private boolean isValidRange(Date first, Date second) {
-    return second.after(first);
+  private boolean isValidRange(LocalDateTime first, LocalDateTime second) {
+    return second.isAfter(first);
   }
 }

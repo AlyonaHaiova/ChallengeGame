@@ -24,7 +24,5 @@ public class ValidationMessage {
   public static final String GAME_DESCRIPTION_LONG = "Description is too long (maximum 1000 chars)";
   public static final String CARD_DESCRIPTION_LONG = "Description is too long (maximum 200 chars)";
 
-  public static final String POSITIVE_NUMBER = "This number must be 0 or more";
-
-
+  public static final String POSITIVE_OR_ZERO_NUMBER = "This number must be 0 or more";
 }
