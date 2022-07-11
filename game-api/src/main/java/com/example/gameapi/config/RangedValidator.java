@@ -30,7 +30,7 @@ public class RangedValidator implements ConstraintValidator<Ranged, Object> {
       field.setAccessible(true);
       return field;
     } catch (NoSuchFieldException exception) {
-      throw new InvalidRangeArgumentsException("Invalid range");
+      throw new InvalidRangeArgumentsException("Invalid range field name");
     }
   }
 
