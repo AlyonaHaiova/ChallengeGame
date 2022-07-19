@@ -14,4 +14,11 @@
         from public.cards_roles
         where card_id = #{cardId}
     </select>
+
+    <insert id="saveCardRoles">
+        insert into public.cards_roles(card_id, role_id) values
+        <foreach collection="roleIds" item="roleId" separator=",">
+            (#{cardId}, #{roleId})
+        </foreach>
+    </insert>
 </mapper>

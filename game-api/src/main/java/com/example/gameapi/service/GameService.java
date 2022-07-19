@@ -10,8 +10,4 @@ import java.util.List;
 
 public interface GameService {
   IdDto create(CreateGameDto createGameDto);
-
-  RandomCardDto getRandomCard(Long gameId, Long roleId, Purpose purpose);
-
-  List<FullCardDataDto> getAllCards(Long gameId);
 }

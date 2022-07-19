@@ -1,6 +1,7 @@
 package com.example.gameapi.repository;
 
 import com.example.gameapi.entity.CardEntity;
+import com.example.gameapi.entity.projection.CardProjection;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,11 +19,13 @@ public interface CardRepository {
   void deleteById(
       @Param("id") Long id);
 
-  List<Long> getDistinctGameIdsFromRelatedTables(
-      @Param("typeId") Long typeId,
-      @Param("roleIds") List<Long> roleIds);
+  CardProjection getRandomCard(
+      @Param("gameId") Long gameId,
+      @Param("next") boolean next,
+      @Param("isPlayable") boolean isPlayable,
+      @Param("lastRoleId") Long lastRoleId,
+      @Param("nextRoleId") Long nextRoleId);
 
-  void saveCardRoles(
-      @Param("cardId") Long cardId,
-      @Param("roleIds") List<Long> roleIds);
+  List<CardProjection> getAllCardsByGameId(
+      @Param("gameId") Long gameId);
 }
