@@ -76,18 +76,20 @@ public class DefaultCardService implements CardService {
 
   @Override
   public RandomCardDto getRandomRefreshedPlayableCard(Long gameId) {
-    Long lastRoleId = moveService.getLastRoleId(gameId);
-    Long nextRoleId = moveService.getNextRoleId(gameId);
-    CardProjection cardProjection = cardRepository.getRandomCard(gameId, false, true, lastRoleId, nextRoleId);
+    CardProjection cardProjection = getRandomCardProjection(gameId, false, true);
     return mapCardProjectionToRandomCardDto(cardProjection);
   }
 
   @Override
   public RandomCardDto getRandomPenaltyCard(Long gameId) {
+    CardProjection cardProjection = getRandomCardProjection(gameId, false, true);
+    return mapCardProjectionToRandomCardDto(cardProjection);
+  }
+
+  private CardProjection getRandomCardProjection(Long gameId, boolean next, boolean isPlayable) {
     Long lastRoleId = moveService.getLastRoleId(gameId);
     Long nextRoleId = moveService.getNextRoleId(gameId);
-    CardProjection cardProjection = cardRepository.getRandomCard(gameId, false, false, lastRoleId, nextRoleId);
-    return mapCardProjectionToRandomCardDto(cardProjection);
+    return cardRepository.getRandomCard(gameId, next, isPlayable, lastRoleId, nextRoleId);
   }
 
   private RandomCardDto mapCardProjectionToRandomCardDto(CardProjection cardProjection) {
