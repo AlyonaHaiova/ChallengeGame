@@ -48,17 +48,17 @@
         left join amount_units au on au.id = c.unit_id
         left join cards_roles cr on c.id = cr.card_id
         left join roles r on r.id = cr.role_id
-        <if test="isPlayable==true">
+        <if test="isPlayable">
             where ct.is_playable=true and cr.role_id in (
-            <if test="next==true">
+            <if test="next">
                 #{nextRoleId}
             </if>
-            <if test="next==false">
+            <if test="!next">
                 #{lastRoleId}
             </if>
             )
         </if>
-        <if test="isPlayable==false">
+        <if test="!isPlayable">
             where ct.is_penalty=true and cr.role_id in (
             #{lastRoleId})
         </if>

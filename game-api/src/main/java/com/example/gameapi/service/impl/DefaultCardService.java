@@ -66,6 +66,14 @@ public class DefaultCardService implements CardService {
   }
 
   @Override
+  public List<FullCardDataDto> getAllCards(Long gameId) {
+    return cardRepository.getAllCardsByGameId(gameId).stream()
+        .map(cardMapper::toCardDto)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  @Transactional
   public RandomCardDto getRandomPlayableCard(Long gameId) {
     Long lastRoleId = moveService.getLastRoleId(gameId);
     Long nextRoleId = moveService.getNextRoleId(gameId);
@@ -82,11 +90,12 @@ public class DefaultCardService implements CardService {
 
   @Override
   public RandomCardDto getRandomPenaltyCard(Long gameId) {
-    CardProjection cardProjection = getRandomCardProjection(gameId, false, true);
+    CardProjection cardProjection = getRandomCardProjection(gameId, false, false);
     return mapCardProjectionToRandomCardDto(cardProjection);
   }
 
-  private CardProjection getRandomCardProjection(Long gameId, boolean next, boolean isPlayable) {
+  @Transactional
+  protected CardProjection getRandomCardProjection(Long gameId, boolean next, boolean isPlayable) {
     Long lastRoleId = moveService.getLastRoleId(gameId);
     Long nextRoleId = moveService.getNextRoleId(gameId);
     return cardRepository.getRandomCard(gameId, next, isPlayable, lastRoleId, nextRoleId);
@@ -99,13 +108,6 @@ public class DefaultCardService implements CardService {
     RandomCardDto card = cardMapper.toRandomCardDto(cardProjection);
     card.setAmount(generateAmount(cardProjection.getRangeBegin(), cardProjection.getRangeEnd()));
     return card;
-  }
-
-  @Override
-  public List<FullCardDataDto> getAllCards(Long gameId) {
-    return cardRepository.getAllCardsByGameId(gameId).stream()
-        .map(cardMapper::toCardDto)
-        .collect(Collectors.toList());
   }
 
   private int generateAmount(int rangeBegin, int rangeEnd) {

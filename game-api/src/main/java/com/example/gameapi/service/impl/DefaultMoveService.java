@@ -22,8 +22,6 @@ public class DefaultMoveService implements MoveService {
 
   @Override
   public void updateLastRoleId(Long gameId, Long nextRoleId) {
-    Long last = getLastRoleId(gameId);
-    Long next = getNextRoleId(gameId);
     moveRepository.updateLastRoleId(gameId, nextRoleId);
   }
 }
