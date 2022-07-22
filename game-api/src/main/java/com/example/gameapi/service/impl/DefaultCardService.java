@@ -99,8 +99,7 @@ public class DefaultCardService implements CardService {
     return getRandomCardCardForLastRole(gameId, false);
   }
 
-  @Transactional
-  protected RandomCardDto getRandomCardCardForLastRole(Long gameId, boolean isPlayable) {
+  private RandomCardDto getRandomCardCardForLastRole(Long gameId, boolean isPlayable) {
     Long lastRoleId = moveService.getLastRoleId(gameId);
     CardProjection cardProjection = cardRepository.getRandomCard(gameId, isPlayable, lastRoleId);
     return mapCardProjectionToRandomCardDto(cardProjection);
