@@ -7,7 +7,9 @@ import com.example.gameapi.dto.RandomCardDto;
 import com.example.gameapi.entity.CardEntity;
 import com.example.gameapi.entity.projection.CardProjection;
 import com.example.gameapi.mapper.CardMapper;
-import com.example.gameapi.repository.*;
+import com.example.gameapi.repository.CardRepository;
+import com.example.gameapi.repository.CardRoleRepository;
+import com.example.gameapi.repository.CardTypeRepository;
 import com.example.gameapi.service.CardService;
 import com.example.gameapi.service.MoveService;
 import com.example.gameapi.utils.CollectionUtils;
@@ -16,7 +18,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,30 +81,29 @@ public class DefaultCardService implements CardService {
   @Override
   @Transactional
   public RandomCardDto getRandomPlayableCard(Long gameId) {
-    Long lastRoleId = moveService.getLastRoleId(gameId);
     Long nextRoleId = moveService.getNextRoleId(gameId);
-    CardProjection cardProjection = cardRepository.getRandomCard(gameId, true, true, lastRoleId, nextRoleId);
+    CardProjection cardProjection = cardRepository.getRandomCard(gameId, true, nextRoleId);
     moveService.updateLastRoleId(gameId, nextRoleId);
     return mapCardProjectionToRandomCardDto(cardProjection);
   }
 
   @Override
+  @Transactional
   public RandomCardDto getRandomRefreshedPlayableCard(Long gameId) {
-    CardProjection cardProjection = getRandomCardProjection(gameId, false, true);
-    return mapCardProjectionToRandomCardDto(cardProjection);
+    return getRandomCardCardForLastRole(gameId, true);
   }
 
   @Override
+  @Transactional
   public RandomCardDto getRandomPenaltyCard(Long gameId) {
-    CardProjection cardProjection = getRandomCardProjection(gameId, false, false);
-    return mapCardProjectionToRandomCardDto(cardProjection);
+    return getRandomCardCardForLastRole(gameId, false);
   }
 
   @Transactional
-  protected CardProjection getRandomCardProjection(Long gameId, boolean next, boolean isPlayable) {
+  protected RandomCardDto getRandomCardCardForLastRole(Long gameId, boolean isPlayable) {
     Long lastRoleId = moveService.getLastRoleId(gameId);
-    Long nextRoleId = moveService.getNextRoleId(gameId);
-    return cardRepository.getRandomCard(gameId, next, isPlayable, lastRoleId, nextRoleId);
+    CardProjection cardProjection = cardRepository.getRandomCard(gameId, isPlayable, lastRoleId);
+    return mapCardProjectionToRandomCardDto(cardProjection);
   }
 
   private RandomCardDto mapCardProjectionToRandomCardDto(CardProjection cardProjection) {

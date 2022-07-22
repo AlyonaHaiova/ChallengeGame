@@ -21,10 +21,8 @@ public interface CardRepository {
 
   CardProjection getRandomCard(
       @Param("gameId") Long gameId,
-      @Param("next") boolean next,
       @Param("isPlayable") boolean isPlayable,
-      @Param("lastRoleId") Long lastRoleId,
-      @Param("nextRoleId") Long nextRoleId);
+      @Param("roleId") Long roleId);
 
   List<CardProjection> getAllCardsByGameId(
       @Param("gameId") Long gameId);

@@ -49,18 +49,10 @@
         left join cards_roles cr on c.id = cr.card_id
         left join roles r on r.id = cr.role_id
         <if test="isPlayable">
-            where ct.is_playable=true and cr.role_id in (
-            <if test="next">
-                #{nextRoleId}
-            </if>
-            <if test="!next">
-                #{lastRoleId}
-            </if>
-            )
+            where ct.is_playable and cr.role_id = #{roleId}
         </if>
         <if test="!isPlayable">
-            where ct.is_penalty=true and cr.role_id in (
-            #{lastRoleId})
+            where ct.is_penalty and cr.role_id = #{roleId}
         </if>
         order by random()
         limit 1
