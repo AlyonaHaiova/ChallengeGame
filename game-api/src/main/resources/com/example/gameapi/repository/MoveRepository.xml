@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.gameapi.repository.MoveRepository">
+    <select id="findLastRoleId" resultType="java.lang.Long">
+        select m.last_role_id
+        from public.moves m
+        where m.game_id = #{gameId}
+    </select>
+
+    <select id="findNextRoleId" resultType="java.lang.Long">
+        select *
+        from ((select r.id
+               from public.roles r
+               where r.game_id = #{gameId}
+                 and r.id > #{lastRoleId}
+               order by r.id
+               limit 1)
+              union
+              (select min(r.id) as res_id
+               from public.roles r
+               where r.game_id = #{gameId})) as res
+        order by res.id desc
+        limit 1
+    </select>
+
+    <update id="updateLastRoleId">
+        update public.moves
+        set last_role_id = #{nextRoleId}
+        where game_id = #{gameId}
+    </update>
+</mapper>

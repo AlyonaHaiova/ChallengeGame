@@ -14,4 +14,8 @@ public interface CardRoleRepository {
 
   Set<Long> getRolesIdsByCardId(
       @Param("cardId") Long cardId);
+
+  void saveCardRoles(
+      @Param("cardId") Long cardId,
+      @Param("roleIds") List<Long> roleIds);
 }

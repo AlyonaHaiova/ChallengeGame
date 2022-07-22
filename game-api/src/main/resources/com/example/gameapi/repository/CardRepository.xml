@@ -32,21 +32,69 @@
         where id = #{id}
     </delete>
 
-    <select id="getDistinctGameIdsFromRelatedTables" resultType="java.lang.Long">
-        select distinct game_id from (
-        select game_id from card_types ct where id=#{typeId}
-        union
-        select game_id from roles r where id in
-        <foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
-            #{roleId}
-        </foreach>
-        ) subtable
+    <select id="getRandomCard" resultMap="card">
+        select
+        c.id as id,
+        c.description as description,
+        c.range_begin as range_begin,
+        c.range_end as range_end,
+        ct.title as card_type_title,
+        ct.color as card_type_color,
+        au.title as amount_unit_title,
+        r.id as role_id,
+        r.title as role_title
+        from cards c
+        left join card_types ct on ct.id = c.type_id
+        left join amount_units au on au.id = c.unit_id
+        left join cards_roles cr on c.id = cr.card_id
+        left join roles r on r.id = cr.role_id
+        <if test="isPlayable">
+            where ct.is_playable and cr.role_id = #{roleId}
+        </if>
+        <if test="!isPlayable">
+            where ct.is_penalty and cr.role_id = #{roleId}
+        </if>
+        order by random()
+        limit 1
     </select>
 
-    <insert id="saveCardRoles">
-        insert into public.cards_roles(card_id, role_id) values
-        <foreach collection="roleIds" item="roleId" separator=",">
-            (#{cardId}, #{roleId})
-        </foreach>
-    </insert>
+    <select id="getAllCardsByGameId" resultMap="card">
+        select c.id          as id,
+               c.description as description,
+               c.range_begin as range_begin,
+               c.range_end   as range_end,
+               ct.title      as card_type_title,
+               ct.color      as card_type_color,
+               au.title      as amount_unit_title,
+               r.id          as role_id,
+               r.title       as role_title
+        from cards c
+                 left join card_types ct on ct.id = c.type_id
+                 left join amount_units au on au.id = c.unit_id
+                 left join cards_roles cr on c.id = cr.card_id
+                 left join roles r on r.id = cr.role_id
+        where ct.game_id = #{gameId}
+        order by c.id
+    </select>
+
+    <resultMap id="card" type="com.example.gameapi.entity.projection.CardProjection">
+        <id column="id" property="id"/>
+        <result column="description" property="description" />
+        <result column="range_begin" property="rangeBegin" />
+        <result column="range_end" property="rangeEnd" />
+
+        <association property="type" javaType="com.example.gameapi.entity.CardTypeEntity">
+            <result column="card_type_title" property="title" />
+            <result column="card_type_color" property="color" />
+        </association>
+
+        <association property="unit" javaType="com.example.gameapi.entity.AmountUnitEntity">
+            <result column="amount_unit_title" property="title" />
+        </association>
+
+        <collection property="roles" javaType="List" ofType="com.example.gameapi.entity.RoleEntity">
+            <result column="role_id" property="id" />
+            <result column="role_title" property="title" />
+        </collection>
+    </resultMap>
 </mapper>
