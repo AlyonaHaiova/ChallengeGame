@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IItemProps } from "./Item.types";
-import "./Item.scss";
+import "./Item.css";
 
 const Item: FC<IItemProps> = ({label, imageSource}) => {
     return (

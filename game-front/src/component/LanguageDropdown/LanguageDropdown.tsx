@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Dropdown from "react-dropdown";
 import Item from "./Item";
-import "./LanguageDropdown.scss";
+import "./LanguageDropdown.css";
 import * as uaLabel from "./ua.png";
 import * as enLabel from "./en.png";
 

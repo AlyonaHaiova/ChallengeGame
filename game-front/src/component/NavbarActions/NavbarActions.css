@@ -1,0 +1,9 @@
+.NavbarActions .text {
+    font-size: 25px;
+    padding: 0 10px;
+}
+
+.NavbarActions .link {
+    text-decoration: none;
+    color: unset;
+}
