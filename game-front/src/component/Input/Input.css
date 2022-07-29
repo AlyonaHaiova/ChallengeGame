@@ -12,10 +12,7 @@
     font-weight: 300;
 }
 
-.input-text:hover {
-    box-shadow: 0 0 3px 3px var(--primary-color);
-}
-
 .input-text:focus-visible {
+    box-shadow: 0 0 3px 3px var(--primary-color);
     outline: none;
 }
