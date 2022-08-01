@@ -8,7 +8,7 @@
 
 .input-text::placeholder {
     color: var(--input-placeholder-color);
-    font-size: 1.3em;
+    font-size: 1.3rem;
     font-weight: 300;
 }
 

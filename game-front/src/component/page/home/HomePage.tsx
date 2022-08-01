@@ -7,7 +7,7 @@ const HomePage: FC = () => {
         <div className="HomePage s-hflex-start m-vflex-center">
             <div>item 1</div>
             <div>item 2</div>
-            <Input name={"test"} placeholder={"test input"}></Input>
+            <Input name="test" placeholder="test input"/>
         </div>
     );
 }
