@@ -1,6 +1,5 @@
 import { FC } from "react";
-import "./Navbar.scss";
-import "../../scss/common/sizing.scss";
+import "./Navbar.css";
 import ContentContainer from "../ContentContainer";
 import Logo from "../Logo";
 import NavbarActions from "../NavbarActions";

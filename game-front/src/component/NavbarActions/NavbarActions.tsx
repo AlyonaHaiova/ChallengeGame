@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { pages } from "../../meta/page";
 import LanguageDropdown from "../LanguageDropdown";
 import ShadowText from "../ShadowText";
-import "./NavbarActions.scss";
+import "./NavbarActions.css";
 
 const NavbarActions: FC = () => {
     return (

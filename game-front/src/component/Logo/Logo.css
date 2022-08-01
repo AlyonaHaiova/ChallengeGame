@@ -1,5 +1,3 @@
-@import "../../scss/variable/theme.scss";
-
 .Logo {
     text-decoration: none;
 }
@@ -8,5 +6,5 @@
     font-family: 'Kanit', sans-serif;
     font-size: 2.5rem;
     font-weight: bold;
-    color: $secondaryLightColor;
+    color: var(--secondary-light-color);
 }

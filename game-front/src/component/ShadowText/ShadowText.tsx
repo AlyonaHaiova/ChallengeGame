@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IShadowTextProps } from "./ShadowText.types";
-import "./ShadowText.scss";
+import "./ShadowText.css";
 
 const ShadowText: FC<IShadowTextProps> = ({
     children,

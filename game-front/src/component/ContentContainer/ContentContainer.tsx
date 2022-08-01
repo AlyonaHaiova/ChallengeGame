@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IContentContainerProps } from "./ContentContainer.types";
-import "./ContentContainer.scss";
+import "./ContentContainer.css";
 
 const ContentContainer: FC<IContentContainerProps> = ({children}) => {
     return (
