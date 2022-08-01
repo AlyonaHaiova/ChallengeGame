@@ -5,7 +5,7 @@ import './Input.css';
 const Input: FC<IInput> = ({
     name= "",
     placeholder = "",
-    className="",
+    className = "",
     ...rest
 }) => {
     return (
