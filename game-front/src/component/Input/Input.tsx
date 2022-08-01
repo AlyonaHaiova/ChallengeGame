@@ -3,7 +3,7 @@ import {IInput} from "./Input.types";
 import './Input.css';
 
 const Input: FC<IInput> = ({
-    name= "",
+    name = "",
     placeholder = "",
     className = "",
     ...rest
