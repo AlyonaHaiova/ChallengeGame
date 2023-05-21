@@ -69,6 +69,7 @@ public class DefaultCardService implements CardService {
   @Override
   public void delete(Long id) {
     cardRepository.deleteById(id);
+    cardRoleRepository.deleteByCardId(id);
   }
 
   @Override
@@ -81,6 +82,10 @@ public class DefaultCardService implements CardService {
   @Override
   @Transactional
   public RandomCardDto getRandomPlayableCard(Long gameId) {
+    //Long lastRoleId = moveService.getLastRoleId(gameId);
+    //if (!moveService.isFirstMove(gameId)) {
+   //   moveService.updatePoints(lastRoleId, points);
+   // }
     Long nextRoleId = moveService.getNextRoleId(gameId);
     CardProjection cardProjection = cardRepository.getRandomCard(gameId, true, nextRoleId);
     moveService.updateLastRoleId(gameId, nextRoleId);
@@ -96,6 +101,8 @@ public class DefaultCardService implements CardService {
   @Override
   @Transactional
   public RandomCardDto getRandomPenaltyCard(Long gameId) {
+    //Long lastRoleId = moveService.getLastRoleId(gameId);
+    //moveService.updatePoints(lastRoleId, points);
     return getRandomCardCardForLastRole(gameId, false);
   }
 
@@ -110,12 +117,7 @@ public class DefaultCardService implements CardService {
       return null;
     }
     RandomCardDto card = cardMapper.toRandomCardDto(cardProjection);
-    card.setAmount(generateAmount(cardProjection.getRangeBegin(), cardProjection.getRangeEnd()));
     return card;
-  }
-
-  private int generateAmount(int rangeBegin, int rangeEnd) {
-    return RANDOM.nextInt(rangeEnd - rangeBegin + 1) + rangeBegin;
   }
 
   private List<Long> getChangedIdsList(Set<Long> ids, Set<Long> newIds) {

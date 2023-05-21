@@ -13,4 +13,12 @@ public interface GameRepository {
   List<Long> getDistinctGameIdsFromRelatedTables(
       @Param("typeId") Long typeId,
       @Param("roleIds") List<Long> roleIds);
+
+  List<GameEntity> getAllGamesByUserId(
+      @Param("userId") Long userId
+  );
+
+  void delete(
+      @Param("id") Long id
+  );
 }

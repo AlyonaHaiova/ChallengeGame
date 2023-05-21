@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="151.25" y="850.5">com.example.gameapi.repository.UserRepository</node>
+    <node x="396.25" y="326.53678385416663">com.example.gameapi.security.SecurityConfig</node>
+    <node x="261.25" y="446.53678385416663">com.example.gameapi.security.JwtConverter</node>
+    <node x="255.75" y="926.0">com.example.gameapi.controller.AuthController</node>
+    <node x="322.75" y="531.6666666666667">com.example.gameapi.service.AuthService</node>
+    <node x="300.25" y="651.6666666666667">com.example.gameapi.service.impl.DefaultAuthService</node>
+    <node x="63.125" y="925.9999999999999">com.example.gameapi.service.UserService</node>
+    <node x="424.25" y="446.53678385416663">com.example.gameapi.security.AudienceValidator</node>
+    <node x="323.75" y="850.5">com.example.gameapi.config.BeanConfig</node>
+    <node x="119.41666666666666" y="651.6666666666667">com.example.gameapi.service.AuthContext</node>
+    <node x="308.75" y="730.5">com.example.gameapi.config.Auth0Properties</node>
+    <node x="96.91666666666666" y="771.6666666666667">com.example.gameapi.service.impl.DefaultAuthContext</node>
+    <node x="40.125" y="1046.0">com.example.gameapi.service.impl.DefaultUserService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.gameapi.service.impl.DefaultUserService" target="com.example.gameapi.repository.UserRepository" relationship="TO_ONE">
+      <point x="76.5" y="-14.5" />
+      <point x="-24.125" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.security.JwtConverter" target="com.example.gameapi.service.UserService" relationship="TO_ONE">
+      <point x="-66.0" y="2.1614583334894633E-4" />
+      <point x="64.417" y="461.037" />
+      <point x="64.417" y="903.0" />
+      <point x="124.125" y="903.0" />
+      <point x="0.0" y="-14.499999999999886" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthContext" target="com.example.gameapi.service.AuthContext" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultUserService" target="com.example.gameapi.service.UserService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.config.BeanConfig" target="com.example.gameapi.config.Auth0Properties" relationship="TO_ONE">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.security.SecurityConfig" target="com.example.gameapi.security.JwtConverter" relationship="TO_ONE">
+      <point x="-71.0" y="-0.0" />
+      <point x="327.25" y="341.03678385416663" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.controller.AuthController" target="com.example.gameapi.service.AuthService" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="327.25" y="987.5" />
+      <point x="502.75" y="987.5" />
+      <point x="502.75" y="546.1666666666667" />
+      <point x="62.5" y="0.0" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.service.UserService" relationship="TO_ONE">
+      <point x="85.0" y="3.3333333328755543E-4" />
+      <point x="487.75" y="666.167" />
+      <point x="487.75" y="903.0" />
+      <point x="124.125" y="903.0" />
+      <point x="0.0" y="-14.499999999999886" />
+    </edge>
+    <edge source="com.example.gameapi.controller.AuthController" target="com.example.gameapi.service.UserService" relationship="TO_ONE">
+      <point x="0.0" y="-14.5" />
+      <point x="327.25" y="903.0" />
+      <point x="124.125" y="903.0" />
+      <point x="0.0" y="-14.499999999999886" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.service.AuthService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.repository.UserRepository" relationship="TO_ONE">
+      <point x="-15.0" y="-14.5" />
+      <point x="370.25" y="634.1666666666667" />
+      <point x="79.41666666666666" y="634.1666666666667" />
+      <point x="79.41666666666666" y="865.0" />
+      <point x="-73.5" y="0.0" />
+    </edge>
+    <edge source="com.example.gameapi.security.SecurityConfig" target="com.example.gameapi.security.AudienceValidator" relationship="CREATE">
+      <point x="40.0" y="14.5" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.config.Auth0Properties" relationship="TO_ONE">
+      <point x="0.0" y="14.5" />
+      <point x="0.0" y="-14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.768" showDependencies="true" x="302.578186035156" y="742.546875" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

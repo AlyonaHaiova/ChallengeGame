@@ -15,8 +15,6 @@ public class FullCardDataDto {
   private Long id;
   private String description;
   private CardTypeDto type;
-  private AmountUnitDto unit;
   private List<RoleDto> roles;
-  private Integer rangeBegin;
-  private Integer rangeEnd;
+  private Integer points;
 }

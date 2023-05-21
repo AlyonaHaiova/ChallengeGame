@@ -2,6 +2,7 @@ package com.example.gameapi.service.impl;
 
 import com.auth0.client.auth.AuthAPI;
 import com.auth0.exception.Auth0Exception;
+import com.auth0.json.auth.CreatedUser;
 import com.auth0.json.auth.TokenHolder;
 import com.auth0.net.AuthRequest;
 import com.auth0.net.Request;
@@ -11,6 +12,7 @@ import com.example.gameapi.dto.EmailDto;
 import com.example.gameapi.dto.IdDto;
 import com.example.gameapi.dto.LoginDto;
 import com.example.gameapi.dto.MessageDto;
+import com.example.gameapi.dto.NewUserDto;
 import com.example.gameapi.dto.RegisterDto;
 import com.example.gameapi.dto.TokenDto;
 import com.example.gameapi.entity.UserEntity;
@@ -43,9 +45,14 @@ public class DefaultAuthService implements AuthService {
           throw new AlreadyExistsException("User with this email or nickname already exists");
         });
     SignUpRequest request = auth.signUp(registerDto.getEmail(), registerDto.getPassword().toCharArray(), auth0Properties.getConnection());
-    UserEntity user = userMapper.toEntity(registerDto);
+
+    CreatedUser createdUser = executeRequest(request);
+    String userId = createdUser.getUserId();
+    NewUserDto newUser = new NewUserDto(registerDto.getNickname(), registerDto.getFirstName(),
+                                        registerDto.getLastName(), registerDto.getEmail(), userId);
+    UserEntity user = userMapper.toEntity(newUser);
     userRepository.save(user);
-    executeRequest(request);
+
     return new IdDto(user.getId());
   }
 

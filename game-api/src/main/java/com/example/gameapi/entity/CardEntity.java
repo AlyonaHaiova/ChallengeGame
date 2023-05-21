@@ -14,9 +14,7 @@ import java.util.List;
 public class CardEntity {
   private Long id;
   private Long typeId;
-  private Long unitId;
   private String description;
   private List<Long> roleIds;
-  private Integer rangeBegin;
-  private Integer rangeEnd;
+  private Integer points;
 }

@@ -5,24 +5,18 @@
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
         insert into public.cards(
             type_id,
-            unit_id,
             description,
-            range_begin,
-            range_end)
+            points)
         values (#{entity.typeId},
-                #{entity.unitId},
                 #{entity.description},
-                #{entity.rangeBegin},
-                #{entity.rangeEnd})
+                #{entity.points})
     </insert>
 
     <update id="update">
         update cards
         set type_id     = #{entity.typeId},
-            unit_id     = #{entity.unitId},
             description = #{entity.description},
-            range_begin = #{entity.rangeBegin},
-            range_end   = #{entity.rangeEnd}
+            points = #{entity.points}
         where id = #{id}
     </update>
 
@@ -36,16 +30,16 @@
         select
         c.id as id,
         c.description as description,
-        c.range_begin as range_begin,
-        c.range_end as range_end,
+        c.points as points,
         ct.title as card_type_title,
         ct.color as card_type_color,
-        au.title as amount_unit_title,
+        ct.is_playable as card_type_is_playable,
+        ct.is_penalty as card_type_is_penalty,
         r.id as role_id,
-        r.title as role_title
+        r.title as role_title,
+        r.points as role_points
         from cards c
         left join card_types ct on ct.id = c.type_id
-        left join amount_units au on au.id = c.unit_id
         left join cards_roles cr on c.id = cr.card_id
         left join roles r on r.id = cr.role_id
         <if test="isPlayable">
@@ -61,16 +55,13 @@
     <select id="getAllCardsByGameId" resultMap="card">
         select c.id          as id,
                c.description as description,
-               c.range_begin as range_begin,
-               c.range_end   as range_end,
+               c.points as points,
                ct.title      as card_type_title,
                ct.color      as card_type_color,
-               au.title      as amount_unit_title,
                r.id          as role_id,
                r.title       as role_title
         from cards c
                  left join card_types ct on ct.id = c.type_id
-                 left join amount_units au on au.id = c.unit_id
                  left join cards_roles cr on c.id = cr.card_id
                  left join roles r on r.id = cr.role_id
         where ct.game_id = #{gameId}
@@ -80,21 +71,25 @@
     <resultMap id="card" type="com.example.gameapi.entity.projection.CardProjection">
         <id column="id" property="id"/>
         <result column="description" property="description" />
-        <result column="range_begin" property="rangeBegin" />
-        <result column="range_end" property="rangeEnd" />
+        <result column="points" property="points" />
 
         <association property="type" javaType="com.example.gameapi.entity.CardTypeEntity">
             <result column="card_type_title" property="title" />
             <result column="card_type_color" property="color" />
+            <result column="card_type_is_playable" property="isPlayable" />
+            <result column="card_type_is_penalty" property="isPenalty" />
         </association>
 
-        <association property="unit" javaType="com.example.gameapi.entity.AmountUnitEntity">
-            <result column="amount_unit_title" property="title" />
+        <association property="role" javaType="com.example.gameapi.entity.RoleEntity">
+            <result column="role_id" property="id" />
+            <result column="role_title" property="title" />
+            <result column="role_points" property="points" />
         </association>
 
         <collection property="roles" javaType="List" ofType="com.example.gameapi.entity.RoleEntity">
             <result column="role_id" property="id" />
             <result column="role_title" property="title" />
+            <result column="role_points" property="points" />
         </collection>
     </resultMap>
 </mapper>

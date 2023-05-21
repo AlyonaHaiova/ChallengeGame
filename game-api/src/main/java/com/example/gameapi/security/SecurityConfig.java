@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -14,6 +15,11 @@ import org.springframework.security.oauth2.jwt.JwtDecoders;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -40,8 +46,9 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .mvcMatchers(
                 Endpoint.GAME + "/**",
-                Endpoint.CARD + "/**",
-                Endpoint.CARD_TYPE + "/**").authenticated()
+                Endpoint.CARD_TYPE + "/**",
+                Endpoint.CARD + "/**"
+                ).permitAll()
             .mvcMatchers(Endpoint.AUTH + "/**").permitAll())
         .csrf().disable()
         .oauth2ResourceServer(oauth2 -> oauth2
@@ -51,4 +58,5 @@ public class SecurityConfig {
         );
     return http.build();
   }
+
 }

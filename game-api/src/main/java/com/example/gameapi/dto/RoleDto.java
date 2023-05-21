@@ -1,9 +1,13 @@
 package com.example.gameapi.dto;
 
+import com.example.gameapi.meta.ValidationMessage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -11,5 +15,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class RoleDto {
   private Long id;
+  private Long gameId;
+  @NotBlank(message = ValidationMessage.TITLE_EMPTY)
+  @Size(min = 3, message = ValidationMessage.TITLE_SHORT)
+  @Size(max = 20, message = ValidationMessage.TITLE_LONG)
   private String title;
+  private Integer points;
 }

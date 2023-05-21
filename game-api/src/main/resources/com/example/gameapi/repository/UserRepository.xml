@@ -15,9 +15,12 @@
            or nickname ilike #{nickname}
     </select>
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
-        insert into public.users(email,
-                                 nickname)
-        values (#{entity.email},
-                #{entity.nickname})
+        insert into public.users(auth_id, email,
+                                 nickname, first_name, last_name)
+        values (#{entity.authId},
+                #{entity.email},
+                #{entity.nickname},
+                #{entity.firstName},
+                #{entity.lastName})
     </insert>
 </mapper>

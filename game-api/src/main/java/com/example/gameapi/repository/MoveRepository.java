@@ -15,4 +15,7 @@ public interface MoveRepository {
   void updateLastRoleId(
       @Param("gameId") Long gameId,
       @Param("nextRoleId") Long nextRoleId);
+
+  void deleteMovesForGame(
+      @Param("gameId") Long gameId);
 }

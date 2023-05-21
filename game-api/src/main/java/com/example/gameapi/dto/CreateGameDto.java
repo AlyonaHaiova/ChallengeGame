@@ -22,4 +22,5 @@ public class CreateGameDto {
   @Size(min = 5, message = ValidationMessage.DESCRIPTION_SHORT)
   @Size(max = 1000, message = ValidationMessage.GAME_DESCRIPTION_LONG)
   private String description;
+  private Long userId;
 }

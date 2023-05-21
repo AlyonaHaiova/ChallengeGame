@@ -4,9 +4,9 @@
 <mapper namespace="com.example.gameapi.repository.GameRepository">
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
         insert into public.games(
-            title, description
+            title, description, user_id
         ) values (
-            #{entity.title}, #{entity.description}
+            #{entity.title}, #{entity.description}, #{entity.userId}
         )
     </insert>
 
@@ -20,4 +20,26 @@
         </foreach>
         ) subtable
     </select>
+
+    <select id="getAllGamesByUserId" resultMap="game">
+        select g.id          as id,
+               g.description as description,
+               g.title as title,
+               g.user_id as user_id
+        from games g
+        where g.user_id = #{userId}
+    </select>
+
+    <resultMap id="game" type="com.example.gameapi.entity.GameEntity">
+        <id column="id" property="id"/>
+        <result column="description" property="description" />
+        <result column="title" property="title" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <delete id="delete">
+        delete
+        from games
+        where id = #{id}
+    </delete>
 </mapper>

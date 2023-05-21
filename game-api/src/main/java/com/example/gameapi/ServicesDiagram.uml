@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-99.5" y="380.5">com.example.gameapi.repository.RoleRepository</node>
+    <node x="276.0" y="-14.5">com.example.gameapi.service.UserService</node>
+    <node x="736.0" y="105.5">com.example.gameapi.service.MoveService</node>
+    <node x="532.0" y="188.5">com.example.gameapi.service.RoleService</node>
+    <node x="268.0" y="500.5">com.example.gameapi.service.impl.DefaultCardService</node>
+    <node x="281.5" y="308.5">com.example.gameapi.service.impl.DefaultAuthContext</node>
+    <node x="713.0" y="225.5">com.example.gameapi.service.impl.DefaultMoveService</node>
+    <node x="94.0" y="308.5">com.example.gameapi.repository.GameRepository</node>
+    <node x="516.0" y="-14.5">com.example.gameapi.service.CardTypeService</node>
+    <node x="527.5" y="380.5">com.example.gameapi.service.GameService</node>
+    <node x="75.5" y="380.5">com.example.gameapi.repository.CardTypeRepository</node>
+    <node x="304.0" y="188.5">com.example.gameapi.service.AuthContext</node>
+    <node x="76.5" y="500.5">com.example.gameapi.repository.MoveRepository</node>
+    <node x="504.5" y="500.5">com.example.gameapi.service.impl.DefaultGameService</node>
+    <node x="52.5" y="105.5">com.example.gameapi.repository.CardRepository</node>
+    <node x="738.5" y="308.5">com.example.gameapi.service.AuthService</node>
+    <node x="76.5" y="225.5">com.example.gameapi.repository.CardRoleRepository</node>
+    <node x="509.0" y="308.5">com.example.gameapi.service.impl.DefaultRoleService</node>
+    <node x="716.0" y="428.5">com.example.gameapi.service.impl.DefaultAuthService</node>
+    <node x="727.5" y="500.5">com.example.gameapi.repository.UserRepository</node>
+    <node x="493.0" y="105.5">com.example.gameapi.service.impl.DefaultCardTypeService</node>
+    <node x="291.0" y="380.5">com.example.gameapi.service.CardService</node>
+    <node x="253.0" y="105.5">com.example.gameapi.service.impl.DefaultUserService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.gameapi.service.impl.DefaultUserService" target="com.example.gameapi.repository.UserRepository" relationship="TO_ONE">
+      <point x="84.0" y="-0.0" />
+      <point x="475.5" y="120.0" />
+      <point x="475.5" y="479.0" />
+      <point x="801.0" y="479.0" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardService" target="com.example.gameapi.repository.CardRepository" relationship="TO_ONE">
+      <point x="30.0" y="14.5" />
+      <point x="383.0" y="622.0" />
+      <point x="-147.0" y="622.0" />
+      <point x="-147.0" y="120.0" />
+      <point x="-74.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultUserService" target="com.example.gameapi.service.UserService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthContext" target="com.example.gameapi.service.AuthContext" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardService" target="com.example.gameapi.service.CardService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultGameService" target="com.example.gameapi.repository.GameRepository" relationship="TO_ONE">
+      <point x="-0.0" y="14.5" />
+      <point x="593.0" y="562.0" />
+      <point x="-117.0" y="562.0" />
+      <point x="-117.0" y="323.0" />
+      <point x="-78.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardService" target="com.example.gameapi.service.MoveService" relationship="TO_ONE">
+      <point x="45.0" y="14.5" />
+      <point x="398.0" y="637.0" />
+      <point x="921.5" y="637.0" />
+      <point x="921.5" y="120.0" />
+      <point x="65.0" y="-0.0" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardService" target="com.example.gameapi.repository.CardRoleRepository" relationship="TO_ONE">
+      <point x="15.0" y="14.5" />
+      <point x="368.0" y="607.0" />
+      <point x="-132.0" y="607.0" />
+      <point x="-132.0" y="240.0" />
+      <point x="-88.5" y="-0.0" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.service.UserService" relationship="TO_ONE">
+      <point x="85.0" y="-0.0" />
+      <point x="951.5" y="443.0" />
+      <point x="951.5" y="-32.0" />
+      <point x="337.0" y="-32.0" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardTypeService" target="com.example.gameapi.repository.CardTypeRepository" relationship="TO_ONE">
+      <point x="15.0" y="-14.5" />
+      <point x="608.0" y="88.0" />
+      <point x="906.5" y="88.0" />
+      <point x="906.5" y="547.0" />
+      <point x="250.5" y="547.0" />
+      <point x="250.5" y="474.0" />
+      <point x="165.0" y="474.0" />
+      <point x="-0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultRoleService" target="com.example.gameapi.service.RoleService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultRoleService" target="com.example.gameapi.repository.RoleRepository" relationship="TO_ONE">
+      <point x="-0.0" y="14.5" />
+      <point x="593.0" y="363.0" />
+      <point x="-26.0" y="363.0" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultGameService" target="com.example.gameapi.service.GameService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardService" target="com.example.gameapi.repository.CardTypeRepository" relationship="TO_ONE">
+      <point x="15.0" y="-14.5" />
+      <point x="368.0" y="474.0" />
+      <point x="165.0" y="474.0" />
+      <point x="-0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultCardTypeService" target="com.example.gameapi.service.CardTypeService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.service.AuthService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultAuthService" target="com.example.gameapi.repository.UserRepository" relationship="TO_ONE">
+      <point x="-0.0" y="14.5" />
+      <point x="-0.0" y="-14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultMoveService" target="com.example.gameapi.repository.MoveRepository" relationship="TO_ONE">
+      <point x="88.0" y="-0.0" />
+      <point x="966.5" y="240.0" />
+      <point x="966.5" y="652.0" />
+      <point x="154.0" y="652.0" />
+      <point x="-0.0" y="14.5" />
+    </edge>
+    <edge source="com.example.gameapi.service.impl.DefaultMoveService" target="com.example.gameapi.service.MoveService" relationship="REALIZATION">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.5120000000000001" showDependencies="true" x="573.7499999999997" y="477.3203124999999" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

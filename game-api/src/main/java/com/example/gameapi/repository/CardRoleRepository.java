@@ -18,4 +18,10 @@ public interface CardRoleRepository {
   void saveCardRoles(
       @Param("cardId") Long cardId,
       @Param("roleIds") List<Long> roleIds);
+
+  void deleteByRoleId(
+      @Param("roleId") Long roleId);
+
+  void deleteByCardId(
+      @Param("cardId") Long cardId);
 }

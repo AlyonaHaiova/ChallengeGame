@@ -14,4 +14,6 @@ public class CardTypeEntity {
   private Long gameId;
   private String title;
   private String color;
+  private Boolean isPenalty;
+  private Boolean isPlayable;
 }

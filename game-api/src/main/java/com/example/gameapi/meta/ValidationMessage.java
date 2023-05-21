@@ -6,12 +6,14 @@ import lombok.experimental.UtilityClass;
 public class ValidationMessage {
   public static final String PASSWORD = "Password is not strong enough. It must contain at least 8 chars including at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special symbol";
 
+  public static final String AUTH_ID_EMPTY = "Auth Id is mandatory";
+
   public static final String EMAIL = "Email is incorrect";
   public static final String EMAIL_LONG = "Email is too long (maximum 50 chars)";
 
-  public static final String NICKNAME_EMPTY = "Nickname is mandatory";
-  public static final String NICKNAME_SHORT = "Nickname is too short (at least 3 chars)";
-  public static final String NICKNAME_LONG = "Nickname is too long (maximum 100 chars)";
+  public static final String NAME_EMPTY = "Name is mandatory";
+  public static final String NAME_SHORT = "Name is too short (at least 3 chars)";
+  public static final String NAME_LONG = "Name is too long (maximum 100 chars)";
 
   public static final String COLOR = "Color is incorrect";
 

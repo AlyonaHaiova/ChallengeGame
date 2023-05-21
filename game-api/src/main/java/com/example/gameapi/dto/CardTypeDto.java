@@ -16,10 +16,13 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CardTypeDto {
+  private Long id;
   @NotBlank(message = ValidationMessage.TITLE_EMPTY)
   @Size(min = 3, message = ValidationMessage.TITLE_SHORT)
   @Size(max = 20, message = ValidationMessage.TITLE_LONG)
   private String title;
   @Pattern(regexp = RegexPattern.COLOR, message = ValidationMessage.COLOR)
   private String color;
+  private Boolean isPlayable;
+  private Boolean isPenalty;
 }

@@ -7,4 +7,38 @@
         from public.roles
         where game_id = #{gameId}
     </select>
+
+    <select id="getRolePoints" resultType="java.lang.Integer">
+        select points
+        from public.roles
+        where id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
+        insert into public.roles(
+            game_id,
+            title,
+            points)
+        values (#{entity.gameId},
+                #{entity.title},
+                #{entity.points})
+    </insert>
+
+    <update id="update">
+        update roles
+        set points = #{entity.points}
+        where id = #{entity.id}
+    </update>
+
+    <delete id="deleteById">
+        delete
+        from roles
+        where id = #{id}
+    </delete>
+
+    <update id="updateRolePoints">
+        update roles
+        set points = #{points}
+        where id = #{id}
+    </update>
 </mapper>

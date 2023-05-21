@@ -23,4 +23,6 @@ public class CreateCardTypeDto {
   private String title;
   @Pattern(regexp = RegexPattern.COLOR, message = ValidationMessage.COLOR)
   private String color;
+  private Boolean isPenalty;
+  private Boolean isPlayable;
 }

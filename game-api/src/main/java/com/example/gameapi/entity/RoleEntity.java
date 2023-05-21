@@ -13,4 +13,5 @@ public class RoleEntity {
   private Long id;
   private String title;
   private Long gameId;
+  private Integer points;
 }

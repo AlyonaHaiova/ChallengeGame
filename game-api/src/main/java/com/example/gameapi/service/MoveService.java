@@ -5,5 +5,9 @@ public interface MoveService {
 
   Long getNextRoleId (Long gameId);
 
+  Boolean isFirstMove(Long gameId);
+
   void updateLastRoleId (Long gameId, Long nextRoleId);
+
+  void deleteMovesForGame(Long gameId);
 }

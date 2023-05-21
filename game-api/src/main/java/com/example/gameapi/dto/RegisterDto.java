@@ -17,10 +17,18 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterDto {
-  @NotBlank(message = ValidationMessage.NICKNAME_EMPTY)
-  @Size(min = 3, message = ValidationMessage.NICKNAME_SHORT)
-  @Size(max = 100, message = ValidationMessage.NICKNAME_LONG)
+  @NotBlank(message = ValidationMessage.NAME_EMPTY)
+  @Size(min = 3, message = ValidationMessage.NAME_SHORT)
+  @Size(max = 100, message = ValidationMessage.NAME_LONG)
   private String nickname;
+  @NotBlank(message = ValidationMessage.NAME_EMPTY)
+  @Size(min = 3, message = ValidationMessage.NAME_SHORT)
+  @Size(max = 100, message = ValidationMessage.NAME_LONG)
+  private String firstName;
+  @NotBlank(message = ValidationMessage.NAME_EMPTY)
+  @Size(min = 3, message = ValidationMessage.NAME_SHORT)
+  @Size(max = 100, message = ValidationMessage.NAME_LONG)
+  private String lastName;
   @Email(message = ValidationMessage.EMAIL)
   @Size(max = 50, message = ValidationMessage.EMAIL_LONG)
   private String email;

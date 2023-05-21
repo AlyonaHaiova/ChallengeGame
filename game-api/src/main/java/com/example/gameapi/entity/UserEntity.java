@@ -11,6 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserEntity {
   private Long id;
+  private String authId;
   private String email;
   private String nickname;
+  private String firstName;
+  private String lastName;
 }

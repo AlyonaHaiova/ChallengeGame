@@ -9,6 +9,16 @@
         </foreach>
     </delete>
 
+    <delete id="deleteByRoleId">
+        delete from cards_roles
+        where role_id = #{roleId}
+    </delete>
+
+    <delete id="deleteByCardId">
+        delete from cards_roles
+        where card_id = #{cardId}
+    </delete>
+
     <select id="getRolesIdsByCardId" resultType="java.lang.Long">
         select role_id
         from public.cards_roles
