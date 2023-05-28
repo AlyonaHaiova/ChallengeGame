@@ -19,7 +19,7 @@ public class ValidationMessage {
 
   public static final String TITLE_EMPTY = "Title is mandatory";
   public static final String TITLE_SHORT = "Title is too short (at least 3 chars)";
-  public static final String TITLE_LONG = "Title is too long (maximum 20 chars)";
+  public static final String TITLE_LONG = "Title is too long (maximum 50 chars)";
   public static final String DESCRIPTION_EMPTY = "Description is mandatory";
   public static final String DESCRIPTION_SHORT = "Description is too short (at least 5 chars)";
 

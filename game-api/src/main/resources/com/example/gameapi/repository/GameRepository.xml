@@ -4,9 +4,13 @@
 <mapper namespace="com.example.gameapi.repository.GameRepository">
     <insert id="save" useGeneratedKeys="true" keyColumn="id" keyProperty="entity.id">
         insert into public.games(
-            title, description, user_id
+            title, description, user_id, goal, is_team
         ) values (
-            #{entity.title}, #{entity.description}, #{entity.userId}
+            #{entity.title},
+            #{entity.description},
+            #{entity.userId},
+            #{entity.goal},
+            #{entity.isTeam}
         )
     </insert>
 
@@ -25,16 +29,37 @@
         select g.id          as id,
                g.description as description,
                g.title as title,
-               g.user_id as user_id
+               g.user_id as user_id,
+               g.goal as goal,
+               g.is_team as is_team
         from games g
         where g.user_id = #{userId}
     </select>
+
+    <select id="getGameById" resultMap="game">
+        select g.id          as id,
+               g.description as description,
+               g.title as title,
+               g.user_id as user_id,
+               g.goal as goal,
+               g.is_team as is_team
+        from games g
+        where g.id = #{id}
+    </select>
+
+    <update id="changeMode">
+        update games
+        set is_team = not is_team
+            where id = #{id}
+    </update>
 
     <resultMap id="game" type="com.example.gameapi.entity.GameEntity">
         <id column="id" property="id"/>
         <result column="description" property="description" />
         <result column="title" property="title" />
         <result column="user_id" property="userId" />
+        <result column="goal" property="goal" />
+        <result column="is_team" property="isTeam" />
     </resultMap>
 
     <delete id="delete">

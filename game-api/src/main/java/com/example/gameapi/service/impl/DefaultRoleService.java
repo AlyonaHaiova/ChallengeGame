@@ -52,6 +52,13 @@ public class DefaultRoleService implements RoleService {
 
   @Transactional
   @Override
+  public void reset(GameRoleDto role) {
+    role.setPoints(0);
+    roleRepository.update(role);
+  }
+
+  @Transactional
+  @Override
   public void delete(Long id) {
     roleRepository.deleteById(id);
     cardRoleRepository.deleteByRoleId(id);

@@ -15,5 +15,7 @@ public interface RoleService {
 
   void update(GameRoleDto entity);
 
+  void reset(GameRoleDto entity);
+
   void delete(Long id);
 }

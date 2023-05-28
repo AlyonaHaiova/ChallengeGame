@@ -14,4 +14,6 @@ public class GameEntity {
   private Long userId;
   private String title;
   private String description;
+  private Integer goal;
+  private Boolean isTeam;
 }

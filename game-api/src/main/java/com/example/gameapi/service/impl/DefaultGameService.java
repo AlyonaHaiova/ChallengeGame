@@ -2,7 +2,6 @@ package com.example.gameapi.service.impl;
 
 import com.example.gameapi.dto.CreateGameDto;
 import com.example.gameapi.dto.IdDto;
-import com.example.gameapi.dto.RandomCardDto;
 import com.example.gameapi.entity.GameEntity;
 import com.example.gameapi.mapper.GameMapper;
 import com.example.gameapi.repository.GameRepository;
@@ -30,6 +29,17 @@ public class DefaultGameService implements GameService {
   @Transactional
   public List<GameEntity> getGames(Long userId) {
     return gameRepository.getAllGamesByUserId(userId);
+  }
+
+  @Override
+  @Transactional
+  public GameEntity getGame(Long id) {
+    return gameRepository.getGameById(id);
+  }
+
+  @Override
+  public void changeMode(Long id) {
+    gameRepository.changeMode(id);
   }
 
   @Override

@@ -23,4 +23,6 @@ public class CreateGameDto {
   @Size(max = 1000, message = ValidationMessage.GAME_DESCRIPTION_LONG)
   private String description;
   private Long userId;
+  private Integer goal;
+  private Boolean isTeam;
 }

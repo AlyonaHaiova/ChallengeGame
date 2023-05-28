@@ -19,7 +19,7 @@ public class CreateCardTypeDto {
   private Long gameId;
   @NotBlank(message = ValidationMessage.TITLE_EMPTY)
   @Size(min = 3, message = ValidationMessage.TITLE_SHORT)
-  @Size(max = 20, message = ValidationMessage.TITLE_LONG)
+  @Size(max = 50, message = ValidationMessage.TITLE_LONG)
   private String title;
   @Pattern(regexp = RegexPattern.COLOR, message = ValidationMessage.COLOR)
   private String color;

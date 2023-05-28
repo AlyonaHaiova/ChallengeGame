@@ -18,6 +18,12 @@ public interface GameRepository {
       @Param("userId") Long userId
   );
 
+  GameEntity getGameById(
+      @Param("id") Long id
+  );
+
+  void changeMode(@Param("id")Long id);
+
   void delete(
       @Param("id") Long id
   );
